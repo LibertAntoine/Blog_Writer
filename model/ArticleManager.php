@@ -55,12 +55,13 @@ class ArticleManager extends DBAccess {
     return new Article($article);
   }
 
-  public function getList($userId)
+
+  public function getRecentList()
   {
     $articles = [];
     
-    $q = $this->db->prepare('SELECT id, userId, title, content FROM articles WHERE userId = :userId ORDER BY title');
-    $q->execute([':userId' => $userId]);
+    $q = $this->db->prepare('SELECT id, userId, title, content FROM articles ORDER BY updateDate');
+    $q->execute();
     
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
     {
