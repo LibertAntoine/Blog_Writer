@@ -14,13 +14,13 @@
 
 
 
-function articleList() {
+function articlesList() {
 
 	$articleManager = new ArticleManager();
 
 	$article = $articleManager->getList($_GET['id']);
 
-	require('view/frontend/articleList.php');
+	require('view/frontend/articleListView.php');
 
 }
 
@@ -34,8 +34,6 @@ function article() {
 
 	require('view/frontend/ArticleView.php');
 }
-
-
 
 
 
@@ -75,7 +73,7 @@ function addArticle($title, $userId, $content)
 }
 
 
-function addArticle($pseudo, $mdp)
+function addUser($pseudo, $mdp)
 {
     
     $user = new User(['pseudo' => $pseudo, 'mdp' => $mdp])
