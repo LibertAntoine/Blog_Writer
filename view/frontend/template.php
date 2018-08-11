@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +9,9 @@
     </head>
         
     <body>
+    	
+    	<?= $navbar ?>
         <?= $content ?>
+        <?= $footer ?>
     </body>
 </html>

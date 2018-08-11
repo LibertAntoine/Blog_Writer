@@ -42,6 +42,7 @@ class ArticleManager extends DBAccess {
 
   public function get($info)
   {
+
     if (is_int($info))
     {
       $q = $this->db->query('SELECT id, userId, title, content, creationDate, updateDate FROM articles WHERE id = '.$info);
@@ -60,9 +61,8 @@ class ArticleManager extends DBAccess {
   {
     $articles = [];
     
-    $q = $this->db->prepare('SELECT id, userId, title, content FROM articles ORDER BY updateDate');
-    $q->execute();
-    
+    $q = $this->db->query('SELECT id, userId, title, content, creationDate, updateDate FROM articles ORDER BY updateDate DESC LIMIT 0, 5');
+
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
     {
       $articles[] = new Article($data);
