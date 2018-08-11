@@ -1,6 +1,7 @@
 <?php 
 
 require('controller/frontend.php');
+require('controller/backend.php');
 
 try {
 
@@ -24,6 +25,9 @@ try {
         }
         elseif ($_GET['action'] == 'logOut') {
         	logOut();
+        }
+        elseif ($_GET['action'] == 'editArticle') {
+        	editArticle($_GET['id']);
         }
         elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {

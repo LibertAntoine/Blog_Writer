@@ -89,6 +89,11 @@ function addComment($articleId, $userId, $content)
     }
 }
 
+
+
+
+
+
 function addArticle($title, $userId, $content)
 {
     

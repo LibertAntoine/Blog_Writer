@@ -11,13 +11,10 @@
     </head>
         
     <body>
-    	<textarea class="tinymce"></textarea>
+
 
     	<?php require("include/navbar.php");?>
         <?= $content ?>
-
-
-
 
 
 

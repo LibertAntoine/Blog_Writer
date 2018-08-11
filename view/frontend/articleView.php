@@ -4,6 +4,8 @@
 <h1>Mon super blog !</h1>
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
+<p><a href="index.php?action=editArticle&amp;id=<?= $article->getId() ?>">Modifier l'article</a></p>
+
 <div class="news">
     <h3>
         <?= htmlspecialchars($article->getTitle()) ?>
