@@ -43,5 +43,4 @@ foreach ($comments as $data)
 <?php $content = ob_get_clean(); ?>
 
 <?php 
-require('navbar.php');
 require('template.php'); ?>

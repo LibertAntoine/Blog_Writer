@@ -1,5 +1,5 @@
 
-<?php ob_start();
+<?php 
 
 if (isset($_SESSION['pseudo'])) {
  ?> 
@@ -15,5 +15,3 @@ if (isset($_SESSION['pseudo'])) {
 
 <?php
 }
-
-$navbar = ob_get_clean(); ?>
