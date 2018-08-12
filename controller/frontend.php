@@ -95,3 +95,13 @@ function addUser($pseudo, $mdp)
 		header('Location: index.php');
     }
 }
+
+function reporting($commentId, $articleId) {
+
+	$commentManager = new CommentManager();
+	$commentManager->reporting($commentId);
+
+	header('Location: index.php?action=article&id=' . $articleId);
+	
+
+}

@@ -39,6 +39,7 @@ foreach ($comments as $data)
 ?>
     <p><strong><?= htmlspecialchars($data->getUserId()) ?></strong> le <?= $data->getCreationDate(); ?></p>
     <p><?= nl2br(htmlspecialchars($data->getContent())) ?></p>
+    <p><a href="index.php?action=reporting&amp;id=<?= $data->getId()?>&amp;article=<?= $article->getId()?>">Signaler un abus</a></p>
 <?php if($user->getStatus() === 'admin') { ?>
     <p><a href="index.php?action=deleteComment&amp;id=<?= $data->getId()?>&amp;article=<?= $article->getId()?>">Supprimer le commentaire</a></p>
 <?php

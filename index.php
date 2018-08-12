@@ -44,6 +44,9 @@ try {
         elseif ($_GET['action'] == 'deleteComment') {
         	deleteComment($_GET['id'], $_GET['article']);
         }
+        elseif ($_GET['action'] == 'reporting') {
+        	reporting($_GET['id'], $_GET['article']);
+        }
         elseif ($_GET['action'] == 'addUser') {
 
         		if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {

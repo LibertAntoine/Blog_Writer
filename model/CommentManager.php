@@ -63,6 +63,15 @@ class CommentManager extends DBAccess
     return $comments;
   }
   
+  public function reporting($commentId)
+  {
+    $q = $this->db->prepare('UPDATE comments SET reporting = reporting + 1 WHERE id = :id');
+      
+    $q->bindValue(':id', $commentId);
+
+    $q->execute();
+  }
+
   public function update(Comment $comment)
   {
     $q = $this->db->prepare('UPDATE comments SET userId = :userId, articleId = :articleId, content = :content, reporting = :reporting WHERE id = :id');
