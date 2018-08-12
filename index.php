@@ -35,6 +35,19 @@ try {
         elseif ($_GET['action'] == 'createArticle') {
         	createArticle();
         }
+        elseif ($_GET['action'] == 'inscription') {
+        	inscription();
+        }
+        elseif ($_GET['action'] == 'addUser') {
+
+        		if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
+                	   
+                	if (strlen($_POST['pseudo']) < 26 && strlen($_POST['pseudo']) > 0 ) {
+                		 echo 'ok';
+                		if (strlen($_POST['mdp']) < 26 && strlen($_POST['mdp']) > 0 ) {
+                   		addUser($_POST['pseudo'], $_POST['mdp']);
+                	}};
+        }}
         elseif ($_GET['action'] == 'addArticle') {
         		
         		if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {

@@ -70,12 +70,22 @@ function logOut() {
 	header('Location: index.php');
 }
 
+function inscription() {
+	$message = '';
+	require('view/frontend/inscription.php');
+
+}
+
+
+
 
 function addUser($pseudo, $mdp)
 {
-    
+
     $user = new User(['pseudo' => $pseudo, 'mdp' => $mdp]);
     
+    echo $user->getPseudo();
+
     $userManager = new UserManager();
 
     $affectedLines = $userManager->add($user);
@@ -84,6 +94,8 @@ function addUser($pseudo, $mdp)
         throw new Exception('Impossible d\'enregister l\'utilisateur');
     }
     else {
-        header('Location: index.php');
+        $_SESSION['pseudo'] = $_POST['pseudo'];
+		$_SESSION['id'] = $user->getId();
+		header('Location: index.php');
     }
 }
