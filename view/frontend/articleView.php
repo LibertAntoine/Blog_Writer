@@ -6,6 +6,7 @@
 
 <p><a href="index.php?action=editArticle&amp;id=<?= $article->getId() ?>">Modifier l'article</a></p>
 
+
 <div class="news">
     <h3>
         <?= htmlspecialchars($article->getTitle()) ?>
@@ -13,23 +14,20 @@
     </h3>
     
     <p>
-        <?= nl2br(htmlspecialchars($article->getContent())) ?>
+        <?= nl2br(($article->getContent())) ?>
     </p>
 </div>
 
 <h2>Commentaires</h2>
 
-<form action="index.php?action=addComment&amp;id=<?= $article->getId() ?>" method="post">
-    <div>
-        <label for="author">Auteur</label><br />
-        <input type="text" id="author" name="author" />
-    </div>
+<form action="index.php?action=addComment" method="post">
     <div>
         <label for="comment">Commentaire</label><br />
         <textarea id="comment" name="comment"></textarea>
     </div>
     <div>
-        <input type="submit" />
+        <input type="submit" value="ajouter un commentaire"/>
+        <input type="hidden" name="id" value=<?= $article->getId() ?> />
     </div>
 </form>
 

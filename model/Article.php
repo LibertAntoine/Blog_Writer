@@ -2,7 +2,8 @@
 
 class Article extends BlogContent {
 
-	protected $title;
+	protected $title,
+  $updateDate;
 
   public function getTitle() 
   {
@@ -20,6 +21,16 @@ class Article extends BlogContent {
 
   public function getUpdateDate() 
   {
- 	  return $this->content;
+ 	  return $this->updateDate;
   }
+
+  public function setUpdateDate($updateDate) 
+  {
+    if (is_string($updateDate)) 
+    {
+      $this->updateDate = $updateDate;
+    }
+  }
+
+
 }

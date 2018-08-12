@@ -19,7 +19,7 @@ foreach ($articles as $data)
         </h3>
         
         <p>
-            <?= nl2br(htmlspecialchars($data->getContent())) ?>
+            <?= nl2br(($data->getContent())) ?>
             <br />
             <em><a href="index.php?action=article&amp;id=<?= $data->getId() ?>">Commentaires</a></em>
         </p>

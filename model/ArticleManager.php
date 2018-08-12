@@ -49,7 +49,7 @@ class ArticleManager extends DBAccess {
       $article = $q->fetch(PDO::FETCH_ASSOC);
     } else 
     {
-     	$q = $this->db->prepare('SELECT id, userId, title, content FROM articles WHERE title = :title');
+     	$q = $this->db->prepare('SELECT id, userId, title, content, creationDate, updateDate FROM articles WHERE title = :title');
       $q->execute([':title' => $info]);
       $article = $q->fetch(PDO::FETCH_ASSOC);
     }

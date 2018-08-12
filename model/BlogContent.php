@@ -5,8 +5,8 @@ abstract class BlogContent {
 	protected $id, 
 	$userId,  
 	$content,
-	$creationDate,
-	$updateDate;
+	$creationDate;
+
 
 
   	public function __construct(array $data)
@@ -44,7 +44,7 @@ abstract class BlogContent {
 
   	public function getCreationDate() 
   	{
- 		return $this->content;
+ 		return $this->creationDate;
  	}
 
 	public function setId($Id) 
@@ -72,6 +72,15 @@ abstract class BlogContent {
  			$this->content = $content;
  		}
  	}
+
+      public function setCreationDate($creationDate) 
+    {
+      if (is_string($creationDate)) 
+      {
+      $this->creationDate = $creationDate;
+    }
+  }
+
 }
 
 

@@ -19,3 +19,79 @@ if(isset($articleId)) {
 	require('view/backend/articleEdit.php');
 
 }
+
+function createArticle() {
+
+	require('view/backend/articleCreate.php');
+
+}
+
+
+function addArticle($userId, $title, $content)
+{
+    
+    $article = new Article(['title' => $title, 'userId' => $userId, 'content' => $content]);
+    
+    $articleManager = new ArticleManager();
+
+    $affectedLines = $articleManager->add($article);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'enregister l\'article !');
+    }
+    else {
+        header('Location: index.php?action=article&id=' . $article->getId());
+    }
+}
+
+
+
+function updateArticle($articleId, $userId, $title, $content)
+{
+    
+    $article = new Article(['id' => $articleId, 'title' => $title, 'userId' => $userId, 'content' => $content]);
+    
+    $articleManager = new ArticleManager();
+
+    $affectedLines = $articleManager->update($article);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible de mettre à jour l\'article !');
+    }
+    else {
+        header('Location: index.php?action=article&id=' . $articleId);
+    }
+}
+
+
+
+function addComment($userId, $articleId , $content)
+{
+    
+    $comment = new Comment(['articleId' => $articleId, 'userId' => $userId, 'content' => $content]);
+    
+    $commentManager = new CommentManager();
+
+    $affectedLines = $commentManager->add($comment);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=article&id=' . $articleId);
+    }
+}
+
+function acompte()
+{
+    $userManager = new userManager();
+    $user = $userManager->get(intval($_SESSION['id']));
+
+    if ($user->getStatus() === "admin") {
+    	require('view/backend/adminBackOffice.php');
+    } elseif ($user->getStatus() === "visitor") {
+    	require('view/backend/visitorBackOffice.php');
+    }
+
+}
+

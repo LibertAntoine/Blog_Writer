@@ -33,6 +33,9 @@ function article() {
 	$article = $articleManager->get(intval($_GET['id']));
 	$comments = $commentManager->getList($_GET['id']);
 
+
+
+
 	require('view/frontend/articleView.php');
 }
 
@@ -50,7 +53,7 @@ function verifUser() {
 		$user = $userManager->get($_POST['pseudo']);
 		if ($user->getMdp() == $_POST['mdp']) {
 			$_SESSION['pseudo'] = $_POST['pseudo'];
-			$_SESSION['mdp'] = $_POST['mdp'];
+			$_SESSION['id'] = $user->getId();
 			header('Location: index.php');
 		} else {
 			$message = 'Le mot de passe renseigné ne correspond pas à cette utilisateur';
@@ -65,50 +68,6 @@ function verifUser() {
 function logOut() {
 	session_destroy();
 	header('Location: index.php');
-}
-
-
-
-
-
-
-function addComment($articleId, $userId, $content)
-{
-    
-    $comment = new Comment(['articleId' => $articleId, '$userId' => $userId, 'content' => $content]);
-    
-    $commentManager = new CommentManager();
-
-    $affectedLines = $commentManager->add($comment);
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $articleId);
-    }
-}
-
-
-
-
-
-
-function addArticle($title, $userId, $content)
-{
-    
-    $article = new Article(['title' => $title, '$userId' => $userId, 'content' => $content]);
-    
-    $articleManager = new ArticleManager();
-
-    $affectedLines = $articleManager->add($article);
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'enregister l\'article !');
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $articleId);
-    }
 }
 
 

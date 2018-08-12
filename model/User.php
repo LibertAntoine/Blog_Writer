@@ -40,7 +40,7 @@ class User {
 
   public function getStatus() 
   {
-    return $this->id;
+    return $this->status;
   }
 
 	public function setId($id) 
