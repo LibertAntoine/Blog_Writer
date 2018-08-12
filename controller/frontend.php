@@ -32,8 +32,9 @@ function article() {
 
 	$article = $articleManager->get(intval($_GET['id']));
 	$comments = $commentManager->getList($_GET['id']);
+	if (isset($_SESSION['id'])) {
 	$user = $userManager->get($_SESSION['id']);
-
+	}
 	require('view/frontend/articleView.php');
 }
 

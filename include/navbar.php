@@ -1,17 +1,25 @@
 
-<?php 
 
+
+<nav class="navbar navbar-default">
+<img class="img-thumbnail" src="public/pictures/logo.png">
+<p class="navbar-text">Un simple texte</p>
+<ul class="nav navbar-nav">	
+<?php 
 if (isset($_SESSION['pseudo'])) {
  ?> 
-<a href="index.php?action=acompte">Espace personnel</a>
-<a href="index.php?action=logOut">Deconnexion</a>
+<li><a class="navbar-link" href="index.php?action=acompte">Espace personnel</a></li>
+<li><a class="navbar-link" href="index.php?action=logOut">Deconnexion</a></li>
 
 <?php 
 } else {
 ?>
 
-<a href="index.php?action=login">Connexion</a>
-<a href="index.php?action=inscription">Inscription</a>
+<li><a class="navbar-link" href="index.php?action=login">Connexion</a></li>
+<li><a class="navbar-link" href="index.php?action=inscription">Inscription</a></li>
 
 <?php
-}
+} ?>
+</ul>
+</nav>
+

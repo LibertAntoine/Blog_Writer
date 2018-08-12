@@ -2,6 +2,8 @@
 
  ob_start(); ?>
 
+
+
 <h1>Bienvenue sur mon blog</h1>
 <p>Découvrez mes derniers articles de voyage :</p>
 
@@ -12,7 +14,7 @@ foreach ($articles as $data)
 { 
 
 ?>
-    <div class="news">
+    <div class="articleBox jumbotron">
         <h3>
             <?= htmlspecialchars($data->getTitle()) ?>
             <em>le <?= $data->getCreationDate() ?></em>
