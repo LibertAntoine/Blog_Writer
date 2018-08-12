@@ -28,13 +28,11 @@ function article() {
 
 	$articleManager = new ArticleManager();
 	$commentManager = new CommentManager();
-
+	$userManager = new UserManager();
 
 	$article = $articleManager->get(intval($_GET['id']));
 	$comments = $commentManager->getList($_GET['id']);
-
-
-
+	$user = $userManager->get($_SESSION['id']);
 
 	require('view/frontend/articleView.php');
 }
