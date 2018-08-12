@@ -22,9 +22,9 @@ class ArticleManager extends DBAccess {
     return $this->db->query('SELECT COUNT(*) FROM articles')->fetchColumn();
   }
 
-  public function delete(Article $article)
+  public function delete($articleId)
   {
-    $this->db->exec('DELETE FROM articles WHERE id = '.$article->getId());
+    $this->db->exec('DELETE FROM articles WHERE id = '.$articleId);
   }
 
  	public function exists($info)

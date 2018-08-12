@@ -21,9 +21,14 @@ class CommentManager extends DBAccess
     return $this->db->query('SELECT COUNT(*) FROM comments')->fetchColumn();
   }
 
-  public function delete(Comment $comment)
+  public function delete($commentId)
   {
-    $this->db->exec('DELETE FROM comments WHERE id = '.$comment->getId());
+    $this->db->exec('DELETE FROM comments WHERE id = '. $commentId);
+  }
+
+  public function deleteList($articleId)
+  {
+    $this->db->exec('DELETE FROM comments WHERE articleId = '. $articleId);
   }
 
  	public function exists($info)

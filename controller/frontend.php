@@ -77,8 +77,6 @@ function inscription() {
 }
 
 
-
-
 function addUser($pseudo, $mdp)
 {
 

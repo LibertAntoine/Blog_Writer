@@ -45,6 +45,23 @@ function addArticle($userId, $title, $content)
 }
 
 
+function deleteArticle($articleId) {
+	$articleManager = new ArticleManager();
+	$articleManager->delete($articleId);
+	$commentManager = new CommentManager();
+	$commentManager->deleteList($articleId);
+
+	header('Location: index.php');
+}
+
+
+function deleteComment($commentId, $articleId) {
+	$commentManager = new CommentManager();
+	$commentManager->delete($commentId);
+
+	 header('Location: index.php?action=article&id=' . $articleId);
+}
+
 
 function updateArticle($articleId, $userId, $title, $content)
 {

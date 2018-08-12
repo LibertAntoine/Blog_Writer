@@ -5,7 +5,7 @@
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
 <p><a href="index.php?action=editArticle&amp;id=<?= $article->getId() ?>">Modifier l'article</a></p>
-
+<p><a href="index.php?action=deleteArticle&amp;id=<?= $article->getId() ?>">Supprimer l'article</a></p>
 
 <div class="news">
     <h3>
@@ -37,6 +37,7 @@ foreach ($comments as $data)
 ?>
     <p><strong><?= htmlspecialchars($data->getUserId()) ?></strong> le <?= $data->getCreationDate(); ?></p>
     <p><?= nl2br(htmlspecialchars($data->getContent())) ?></p>
+    <p><a href="index.php?action=deleteComment&amp;id=<?= $data->getId()?>&amp;article=<?= $article->getId()?>">Supprimer le commentaire</a></p>
 <?php
 }
 ?>

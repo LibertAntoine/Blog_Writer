@@ -38,6 +38,12 @@ try {
         elseif ($_GET['action'] == 'inscription') {
         	inscription();
         }
+        elseif ($_GET['action'] == 'deleteArticle') {
+        	deleteArticle($_GET['id']);
+        }
+        elseif ($_GET['action'] == 'deleteComment') {
+        	deleteComment($_GET['id'], $_GET['article']);
+        }
         elseif ($_GET['action'] == 'addUser') {
 
         		if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
