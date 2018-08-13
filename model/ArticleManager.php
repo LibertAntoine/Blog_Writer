@@ -45,11 +45,11 @@ class ArticleManager extends DBAccess {
 
     if (is_int($info))
     {
-      $q = $this->db->query('SELECT id, userId, title, content, creationDate, updateDate FROM articles WHERE id = '.$info);
+      $q = $this->db->query('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM articles WHERE id = '.$info);
       $article = $q->fetch(PDO::FETCH_ASSOC);
     } else 
     {
-     	$q = $this->db->prepare('SELECT id, userId, title, content, creationDate, updateDate FROM articles WHERE title = :title');
+     	$q = $this->db->prepare('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM articles WHERE title = :title');
       $q->execute([':title' => $info]);
       $article = $q->fetch(PDO::FETCH_ASSOC);
     }
@@ -61,7 +61,7 @@ class ArticleManager extends DBAccess {
   {
     $articles = [];
     
-    $q = $this->db->query('SELECT id, userId, title, content, creationDate, updateDate FROM articles ORDER BY updateDate DESC LIMIT 0, 5');
+    $q = $this->db->query('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM articles ORDER BY updateDate DESC LIMIT 0, 5');
 
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
     {

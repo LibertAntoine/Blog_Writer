@@ -68,6 +68,18 @@ class UserManager extends DBAccess
     }
     return $users;
   }
+
+  public function getName($userId)
+  {
+    $users = [];
+    
+    $q = $this->db->prepare("SELECT pseudo FROM users WHERE id = $userId");
+    $q->execute();
+ 
+     $pseudo = $q->fetch();
+     $pseudo = $pseudo[0];
+    return $pseudo;
+  }
   
   public function update(User $user)
   {

@@ -43,7 +43,7 @@ class CommentManager extends DBAccess
   {
     if (is_int($info))
     {
-      $q = $this->db->query('SELECT id, userId, articleId, content, creationDate, reporting FROM comments WHERE id = '.$info);
+      $q = $this->db->query('SELECT id, userId, articleId, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, reporting FROM comments WHERE id = '.$info);
       $comment = $q->fetch(PDO::FETCH_ASSOC);
     }
     return new Comment($comment);
@@ -53,7 +53,7 @@ class CommentManager extends DBAccess
   {
     $comments = [];
     
-    $q = $this->db->prepare('SELECT id, userId, articleId, content, creationDate, reporting FROM comments WHERE articleId = :articleId ORDER BY creationDate');
+    $q = $this->db->prepare('SELECT id, userId, articleId, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, reporting FROM comments WHERE articleId = :articleId ORDER BY creationDate');
     $q->execute([':articleId' => $articleId]);
     
     while ($data = $q->fetch(PDO::FETCH_ASSOC))

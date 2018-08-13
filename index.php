@@ -81,7 +81,7 @@ try {
                 }
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('Vous devez vous connecter pour ajouter un commentaire');
             }
         }
     }

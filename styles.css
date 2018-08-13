@@ -13,11 +13,9 @@ h1 {
 
 .navbloc {
 	height: 120px;
-	width: 120px;
+	width: 140px;
 	text-align: center;
-	padding-top: 35px;
-
-
+	line-height: 120px;
 }
 
 #navbar {
@@ -30,6 +28,17 @@ h1 {
 #nav {
 	display: flex;
 }
+
+#navbar a {
+	color: white;
+	font-size : 15px;
+	font-weight: bold;
+}
+
+#navbar a:hover {
+	opacity: 0.5;
+}
+
 
 
 
