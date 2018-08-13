@@ -1,16 +1,16 @@
 
 
 
-<nav class="navbar navbar-default">
-<img class="img-thumbnail" src="public/pictures/logo.png">
-<p class="navbar-text">Un simple texte</p>
-<ul class="nav navbar-nav">	
+<nav id="navbar" class="navbar navbar-default">
+<h1 class="navbar-text">Plongez avec moi à la découverte de l'Alaska</h1>
+
 <?php 
 if (isset($_SESSION['pseudo'])) {
  ?> 
-<li><a class="navbar-link" href="index.php?action=acompte">Espace personnel</a></li>
-<li><a class="navbar-link" href="index.php?action=logOut">Deconnexion</a></li>
-
+<div id="nav">
+<a class="navbar-link" href="index.php?action=acompte"><div class="navbloc">Espace personnel</div></a>
+<a class="navbar-link" href="index.php?action=logOut"><div class="navbloc">Deconnexion</div></a>
+</div>
 <?php 
 } else {
 ?>
@@ -20,6 +20,6 @@ if (isset($_SESSION['pseudo'])) {
 
 <?php
 } ?>
-</ul>
+
 </nav>
 

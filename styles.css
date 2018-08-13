@@ -1,0 +1,35 @@
+
+
+
+h1 {
+	color: white;
+	font-size : 30px;
+}
+
+.articleBox {
+	margin:20;
+	background-color: grey;
+}
+
+.navbloc {
+	height: 120px;
+	width: 120px;
+	text-align: center;
+	padding-top: 35px;
+
+
+}
+
+#navbar {
+	margin-bottom: 40px;
+	background-image: url(public/pictures/banierePicture.jpg);
+	background-size:cover;
+	height: 120px;
+}
+
+#nav {
+	display: flex;
+}
+
+
+

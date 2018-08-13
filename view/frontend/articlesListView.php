@@ -4,7 +4,7 @@
 
 
 
-<h1>Bienvenue sur mon blog</h1>
+<h2>Bienvenue sur mon blog</h2>
 <p>Découvrez mes derniers articles de voyage :</p>
 
 
@@ -15,15 +15,12 @@ foreach ($articles as $data)
 
 ?>
     <div class="articleBox jumbotron">
-        <h3>
-            <?= htmlspecialchars($data->getTitle()) ?>
-            <em>le <?= $data->getCreationDate() ?></em>
-        </h3>
-        
+        <h3><?= htmlspecialchars($data->getTitle()) ?></h3>
+        <em>créé le <?= $data->getCreationDate() ?></em>
         <p>
             <?= nl2br(($data->getContent())) ?>
             <br />
-            <em><a href="index.php?action=article&amp;id=<?= $data->getId() ?>">Commentaires</a></em>
+            <em><a href="index.php?action=article&amp;id=<?= $data->getId() ?>">Voir les commentaires</a></em>
         </p>
     </div>
 <?php

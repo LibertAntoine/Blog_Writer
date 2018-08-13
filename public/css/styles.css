@@ -1,5 +1,16 @@
+
+
 .articleBox {
 	margin:20;
 	background-color: grey;
-	
+}
+
+#navbar {
+	margin-bottom: 40px;
+	background-image: url(public/pictures/banierePicture.jpg);
+
+}
+
+h1 {
+	font-size: 6px;
 }

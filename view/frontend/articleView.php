@@ -4,7 +4,7 @@
 
 <div class="row">
 <div class="col-sm-12">
-<h1>Mon super blog !</h1>
+<h2>Mon super blog !</h2>
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
 <?php 
