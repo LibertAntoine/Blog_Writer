@@ -127,3 +127,11 @@ a:hover {
 label {
 	font-weight: bold;
 }
+
+.titleEnter {
+	margin-bottom: 20px;
+}
+
+.titleInput {
+	width: 600px;
+}
