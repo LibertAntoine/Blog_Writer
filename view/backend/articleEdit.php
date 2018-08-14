@@ -18,6 +18,7 @@
 <div>
         <input type="submit" value="Valider la création de l'article" />
         <input type="hidden" name="id" value=<?= $article->getId() ?> />
+        <input type="hidden" name="nbComment" value=<?= $article->getNbComment() ?> />
 </div>
 </form>
 

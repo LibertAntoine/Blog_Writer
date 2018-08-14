@@ -65,11 +65,36 @@ h4 {
 }
 
 .commentLink {
-	color: black;
-	text-decoration: none;
 	line-height: 40px;
 }
 
 #presentation {
 	background-color: #76ccf7;
+}
+
+#presentation a {
+	color: #1e5470;
+}
+
+#presentation a:hover {
+	color: #1e5470;
+}
+
+#newArticle {
+	padding-top: 15px;
+	margin-top: 20px; 
+	margin-bottom: 30px;
+}
+
+#newArticle:hover {
+	text-decoration: underline;
+
+}
+
+a {
+	color: #76ccf7;
+}
+
+a:hover {
+	color: #76ccf7;
 }

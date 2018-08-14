@@ -33,7 +33,10 @@ try {
         	editArticle($_GET['id']);
         }
         elseif ($_GET['action'] == 'editPseudo') {
-            editPseudo($_POST['pseudo']);
+            editPseudo($_POST['newPseudo']);
+        }
+        elseif ($_GET['action'] == 'editMdp') {
+            editMdp($_POST['oldMdp'],$_POST['NewMdp']);
         }
         elseif ($_GET['action'] == 'createArticle') {
         	createArticle();
@@ -70,7 +73,7 @@ try {
         elseif ($_GET['action'] == 'updateArticle') {
         		if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
 	                	if (!empty($_POST['title']) && !empty($_POST['content'])) {
-	                   		updateArticle($_POST['id'], $_SESSION['id'], $_POST['title'], $_POST['content']);
+	                   		updateArticle($_POST['id'], $_SESSION['id'], $_POST['title'], $_POST['content'], $_POST['nbComment']);
 	                	}
 	               }
         }

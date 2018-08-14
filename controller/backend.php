@@ -67,16 +67,12 @@ function deleteComment($commentId, $articleId) {
 }
 
 
-function updateArticle($articleId, $userId, $title, $content)
+function updateArticle($articleId, $userId, $title, $content, $nbComment)
 {
     
-    $article = new Article(['id' => $articleId, 'title' => $title, 'userId' => $userId, 'content' => $content]);
+    $article = new Article(['id' => $articleId, 'title' => $title, 'userId' => $userId, 'content' => $content, 'nbComment' => $nbComment]);
     
     $articleManager = new ArticleManager();
-    $oldArticle = $articleManager->get($articleId);
-    $nbComment = $oldArticle->getNbComment();
-    echo $nbComment;
-    $article->setNbComment() = $nbComment;
 
     $affectedLines = $articleManager->update($article);
 
@@ -126,7 +122,25 @@ function acompte()
 }
 
 function editPseudo($newPseudo) {
-    $user = new user(['id' => $_GET['id'], 'pseudo' => $newPseudo])
+    $user = new User(['id' => $_GET['id'], 'pseudo' => $newPseudo]);
+    $userManager = new UserManager();
 
+    $userManager->update($user);
 }
 
+function editMdp($oldMdp, $newMdp) {
+    $userManager = new userManager();
+    $user = $userManager->get(intval($_SESSION['id']));
+    if ($user->getMdp() === $oldMdp) {
+        if(strlen($newMdp) < 15 && strlen($newMdp) > 8) {
+        $user->setMdp($newMdp);
+        $userManager->update($user);
+        $message = 'Le nouveau mot de passe a bien été renseigné';
+    } else {
+        $message = 'Le mot de passe renseigné n\est pas compris entre 8 et 15 caractères';
+    }} else {
+        $message = 'L\ancien mot de passe renseigné n\'est pas le bon';
+    }
+    
+    require('view/backend/visitorBackOffice.php');
+}
