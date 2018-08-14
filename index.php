@@ -32,6 +32,9 @@ try {
         elseif ($_GET['action'] == 'editArticle') {
         	editArticle($_GET['id']);
         }
+        elseif ($_GET['action'] == 'editPseudo') {
+            editPseudo($_POST['pseudo']);
+        }
         elseif ($_GET['action'] == 'createArticle') {
         	createArticle();
         }

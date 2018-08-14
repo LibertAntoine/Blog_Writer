@@ -33,7 +33,6 @@ function addArticle($userId, $title, $content)
     $article = new Article(['title' => $title, 'userId' => $userId, 'content' => $content]);
     
     $articleManager = new ArticleManager();
-
     $affectedLines = $articleManager->add($article);
 
     if ($affectedLines === false) {
@@ -74,6 +73,10 @@ function updateArticle($articleId, $userId, $title, $content)
     $article = new Article(['id' => $articleId, 'title' => $title, 'userId' => $userId, 'content' => $content]);
     
     $articleManager = new ArticleManager();
+    $oldArticle = $articleManager->get($articleId);
+    $nbComment = $oldArticle->getNbComment();
+    echo $nbComment;
+    $article->setNbComment() = $nbComment;
 
     $affectedLines = $articleManager->update($article);
 
@@ -119,6 +122,11 @@ function acompte()
     } elseif ($user->getStatus() === "visitor") {
     	require('view/backend/visitorBackOffice.php');
     }
+
+}
+
+function editPseudo($newPseudo) {
+    $user = new user(['id' => $_GET['id'], 'pseudo' => $newPseudo])
 
 }
 
