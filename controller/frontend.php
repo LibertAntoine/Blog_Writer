@@ -54,7 +54,6 @@ function verifUser() {
 		if ($user->getMdp() == $_POST['mdp']) {
 			$_SESSION['pseudo'] = $_POST['pseudo'];
 			$_SESSION['id'] = $user->getId();
-			$_SESSION['status'] = $user->getStatus();
 			header('Location: index.php');
 		} else {
 			$message = 'Le mot de passe renseigné ne correspond pas à cette utilisateur';
@@ -95,7 +94,6 @@ function addUser($pseudo, $mdp)
     else {
         $_SESSION['pseudo'] = $_POST['pseudo'];
 		$_SESSION['id'] = $user->getId();
-		$_SESSION['status'] = $user->getStatus();
 		header('Location: index.php');
     }
 }

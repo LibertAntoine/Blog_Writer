@@ -2,9 +2,8 @@
 
 <?php ob_start(); ?>
 
-<p><a href="index.php">Retour à la liste des billets</a></p>
+<p><a class="indexLink" href="index.php">-> Retour à l'acceuil du site</a></p>
 
-<h1>Merci d'entrez vos identifiants de connexion</h1>
 <p><?=  htmlspecialchars($message)?></p>
 
 <h2>Page d'authentification</h2>
@@ -18,7 +17,7 @@
     </div>
     <div>
         <label for="mdp">Mot de passe :</label><br />
-        <input id="mdp" name="mdp"></input>
+        <input type="password" id="mdp" name="mdp"></input>
     </div>
     <div>
         <input class="btn btn-success" type="submit" value="Valider"/>

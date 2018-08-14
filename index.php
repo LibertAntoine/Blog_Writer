@@ -36,7 +36,7 @@ try {
             editPseudo($_POST['newPseudo']);
         }
         elseif ($_GET['action'] == 'editMdp') {
-            editMdp($_POST['oldMdp'],$_POST['NewMdp']);
+            editMdp($_POST['oldMdp'],$_POST['newMdp']);
         }
         elseif ($_GET['action'] == 'createArticle') {
         	createArticle();

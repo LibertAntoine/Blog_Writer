@@ -2,6 +2,9 @@
 
  ob_start(); ?>
 
+
+<p><a class="indexLink" href="index.php">-> Retour à l'acceuil du site</a></p>
+
 <h2>Création d'un nouveau compte</h2>
 
 <div class="col-sm-6 jumbotron">
@@ -14,7 +17,7 @@
 </div>
 <div>
 <label for="mdp">Mot de passe : </label>
-<input type="text" id="mdp" name="mdp"/>
+<input type="password" id="mdp" name="mdp"/>
 <p>Entre 8 et 25 caractères<p>
 </div>
 <div>

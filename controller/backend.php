@@ -113,34 +113,37 @@ function acompte()
     $userManager = new userManager();
     $user = $userManager->get(intval($_SESSION['id']));
 
-    if ($user->getStatus() === "admin") {
-    	require('view/backend/adminBackOffice.php');
-    } elseif ($user->getStatus() === "visitor") {
-    	require('view/backend/visitorBackOffice.php');
-    }
+    	require('view/backend/backOffice.php');
 
 }
 
 function editPseudo($newPseudo) {
-    $user = new User(['id' => $_GET['id'], 'pseudo' => $newPseudo]);
-    $userManager = new UserManager();
-
-    $userManager->update($user);
+    if(strlen($newPseudo) < 25 && strlen($newPseudo) > 8) {
+        $userManager = new UserManager();
+        $user = $userManager->get($_SESSION['id']);
+        $user->setPseudo($newPseudo);
+        $userManager->update($user);
+        $_SESSION['pseudo'] = $newPseudo;
+        $message = 'Le nouveau pseudo a bien été enregistré';
+    } else {
+        $message = 'Le pseudo renseigné n\'est pas compris entre 8 et 15 caractères';
+    }
+    require('view/backend/backOffice.php');
 }
 
 function editMdp($oldMdp, $newMdp) {
     $userManager = new userManager();
     $user = $userManager->get(intval($_SESSION['id']));
     if ($user->getMdp() === $oldMdp) {
-        if(strlen($newMdp) < 15 && strlen($newMdp) > 8) {
+        if(strlen($newMdp) < 25 && strlen($newMdp) > 8) {
         $user->setMdp($newMdp);
         $userManager->update($user);
-        $message = 'Le nouveau mot de passe a bien été renseigné';
+        $message = 'Le nouveau mot de passe a bien été enregistré';
     } else {
-        $message = 'Le mot de passe renseigné n\est pas compris entre 8 et 15 caractères';
+        $message = 'Le mot de passe renseigné n\'est pas compris entre 8 et 15 caractères';
     }} else {
-        $message = 'L\ancien mot de passe renseigné n\'est pas le bon';
+        $message = 'L\'ancien mot de passe renseigné n\'est pas le bon';
     }
-    
-    require('view/backend/visitorBackOffice.php');
+
+    require('view/backend/backOffice.php');
 }
