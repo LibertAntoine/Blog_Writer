@@ -8,7 +8,7 @@
 
 <h2>Page d'authentification</h2>
 
-<div class="col-sm-6 jumbotron">
+<div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 jumbotron">
 <form action="index.php?action=verifUser" method="post">
     <h3>Merci d'entrer vos identifiants de connexion</h3>
     <div>

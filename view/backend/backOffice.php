@@ -13,7 +13,7 @@
 <?php } ?>
 
 <div class="row">
-	<div class="col-sm-6 jumbotron">
+	<div class="col-md-6 col-sm-12 jumbotron">
 <?php if (isset($message)) { ?>	
 	<p><?= $message ?></p>
 <?php } ?>	
@@ -25,7 +25,7 @@
 			 <input class="btn btn-success" type="submit" value="Valider la modification"/>
 		</form>
 	</div>
-	<div class="col-sm-6 jumbotron">
+	<div class="col-md-6 col-sm-12 jumbotron">
 		<form action="index.php?action=editMdp" method="post">
 			<h3>Modification du mot de passe du compte</h3>
 			<label for="oldMdp">Ancien mot de passe :  </label>

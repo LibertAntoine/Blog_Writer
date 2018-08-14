@@ -206,3 +206,43 @@ label {
 .loger {
 	margin-right: 60px;
 }
+
+
+
+@media (max-width: 768px)
+
+{
+
+.titleInput {
+	width: 300px;
+}
+
+h1 {
+	margin-left: 30px;
+}
+}
+
+
+@media (max-width: 1100px) {
+
+
+.loger {
+	position: absolute;
+	top: 120px;
+	left: 0%;
+	background-color: #1e5470;
+	width: 100%;
+	padding-left: 60px;
+}
+
+.navbloc {
+	height: 40px;
+	line-height: 40px;
+
+}
+
+#navbar {
+	margin-bottom: 80px;
+}
+
+}

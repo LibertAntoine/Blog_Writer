@@ -15,7 +15,7 @@
 
     	<?php require("include/navbar.php");?>
         
-        <section class="container">
+        <section id="blogContent" class="container">
         <?= $content ?>
         </section>
 
