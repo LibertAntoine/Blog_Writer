@@ -53,7 +53,7 @@ class CommentManager extends DBAccess
   {
     $comments = [];
     
-    $q = $this->db->prepare('SELECT id, userId, articleId, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, reporting FROM comments WHERE articleId = :articleId ORDER BY creationDate');
+    $q = $this->db->prepare('SELECT id, userId, articleId, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, reporting FROM comments WHERE articleId = :articleId ORDER BY creationDate DESC');
     $q->execute([':articleId' => $articleId]);
     
     while ($data = $q->fetch(PDO::FETCH_ASSOC))

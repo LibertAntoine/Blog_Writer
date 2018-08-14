@@ -19,6 +19,7 @@ function articlesList() {
 
 	$articles = $articleManager->getRecentList();
 
+	$topArticles = $articleManager->getBestList();
 
 	require('view/frontend/articlesListView.php');
 

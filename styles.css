@@ -1,14 +1,13 @@
 
-
-
 h1 {
 	color: white;
 	font-size : 30px;
+	margin-left: 100px;
 }
 
 .articleBox {
 	margin:20;
-	background-color: grey;
+	background-color: #76ccf7;
 }
 
 .navbloc {
@@ -16,6 +15,12 @@ h1 {
 	width: 140px;
 	text-align: center;
 	line-height: 120px;
+	background-color: rgba(0,0,0,0);
+
+}
+
+.navbloc:hover {
+	background-color: rgba(0,0,0,0.8);
 }
 
 #navbar {
@@ -25,8 +30,9 @@ h1 {
 	height: 120px;
 }
 
-#nav {
+.loger {
 	display: flex;
+	
 }
 
 #navbar a {
@@ -36,9 +42,11 @@ h1 {
 }
 
 #navbar a:hover {
-	opacity: 0.5;
+	text-decoration:none;
 }
 
-
+#article {
+	padding-top: 20px;
+}
 
 

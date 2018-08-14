@@ -59,7 +59,12 @@ function deleteComment($commentId, $articleId) {
 	$commentManager = new CommentManager();
 	$commentManager->delete($commentId);
 
-	 header('Location: index.php?action=article&id=' . $articleId);
+    $articleManager = new ArticleManager();
+    $article = $articleManager->get(intval($articleId));
+    $article->setNbComment($article->getNbComment() - 1);
+    $articleManager->update($article);
+
+	header('Location: index.php?action=article&id=' . $articleId);
 }
 
 
@@ -86,17 +91,22 @@ function addComment($userId, $articleId , $content)
 {
     
     $comment = new Comment(['articleId' => $articleId, 'userId' => $userId, 'content' => $content]);
-    
     $commentManager = new CommentManager();
-
-    $affectedLines = $commentManager->add($comment);
+    $affectedLines = $commentManager->add($comment); 
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
+        $articleManager = new ArticleManager();
+
+        $article = $articleManager->get(intval($articleId));
+
+        $article->setNbComment($article->getNbComment() + 1);
+        $articleManager->update($article);
         header('Location: index.php?action=article&id=' . $articleId);
     }
+
 }
 
 function acompte()

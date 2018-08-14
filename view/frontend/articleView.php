@@ -4,8 +4,9 @@
 
 <div class="row">
 <div class="col-sm-12">
-<p><a href="index.php">Retour à la liste des billets</a></p>
+<p><a href="index.php">-> Retour à l'acceuil</a></p>
 
+<div id="article" class="article jumbotron">
 <?php 
 if(isset($user)) {
 if($user->getStatus() === 'admin') { ?>
@@ -15,7 +16,7 @@ if($user->getStatus() === 'admin') { ?>
 </div>
 <?php }} ?>
 
-<div class="article">
+
     <h2>
         <?= htmlspecialchars($article->getTitle()) ?>  
     </h2>
@@ -28,18 +29,20 @@ if($user->getStatus() === 'admin') { ?>
 
 <h3>Commentaires</h3>
 
+<?php if (isset($user)) { ?>
 <form action="index.php?action=addComment" method="post">
     <div>
         <label for="comment">Ajouter un commentaire</label><br />
         <textarea id="comment" name="comment"></textarea>
     </div>
     <div>
-        <input class="btn btn-default" type="submit" value="ajouter un commentaire"/>
+        <input class="btn btn-default" type="submit" value="Valider"/>
         <input type="hidden" name="id" value=<?= $article->getId() ?> />
     </div>
 </form>
 
 <?php
+}
 foreach ($comments as $data)
 {
 ?>
