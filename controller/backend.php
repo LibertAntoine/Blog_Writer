@@ -59,9 +59,7 @@ function deleteComment($commentId, $articleId) {
 	$commentManager->delete($commentId);
 
     $articleManager = new ArticleManager();
-    $article = $articleManager->get(intval($articleId));
-    $article->setNbComment($article->getNbComment() - 1);
-    $articleManager->update($article);
+    $articleManager->updateNbComment($articleId, "remove");
 
 	header('Location: index.php?action=article&id=' . $articleId);
 }
@@ -98,11 +96,7 @@ function addComment($userId, $articleId , $content)
     }
     else {
         $articleManager = new ArticleManager();
-
-        $article = $articleManager->get(intval($articleId));
-
-        $article->setNbComment($article->getNbComment() + 1);
-        $articleManager->update($article);
+        $articleManager->updateNbComment($articleId, 'add');
         header('Location: index.php?action=article&id=' . $articleId);
     }
 

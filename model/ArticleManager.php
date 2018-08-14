@@ -83,6 +83,20 @@ class ArticleManager extends DBAccess {
     return $articles;
   }
   
+  public function updateNbComment($articleId, $action)
+  {
+    if ($action === "add") {
+    $q = $this->db->prepare('UPDATE articles SET nbComment = nbComment + 1 WHERE id = :id');
+
+    } elseif ($action === "remove") {
+    $q = $this->db->prepare('UPDATE articles SET nbComment = nbComment - 1 WHERE id = :id');
+    }
+    $q->bindValue(':id', $articleId);
+    $q->execute();
+  }
+
+
+
   public function update(Article $article)
   {
     $q = $this->db->prepare('UPDATE articles SET userId = :userId, title = :title, content = :content, updateDate = NOW(), nbComment = :nbComment WHERE id = :id');
