@@ -19,7 +19,7 @@
 <h3>Retrouver les derniers articles sur mon voyage : </h3>
 
 <div class="row">
-<div class="col-sm-8">
+<div class="col-lg-8 col-md-7">
 <?php
 
 foreach ($articles as $data)
@@ -42,7 +42,7 @@ foreach ($articles as $data)
 }
 ?>
 </div>
-<div class="col-sm-4">
+<div class="col-lg-4 col-md-5">
     <div id="navPage" class="jumbotron">
     <h3>Autres contenus</h3>
         <ul>
@@ -70,12 +70,12 @@ foreach ($topArticles as $data)
 ?>		
 </div>
 <div id="book" class="jumbotron">
-    <h3>Précommandez mon livre</h3>
+    <h3>Précommandez mon livre !!!</h3>
     <p>Vous pouvez d'or et déjà commander mon livre sur mon voyage en Alaska.</p>
 <div id="logoBox">
-    <a href=""><img src="public/pictures/amazon-logo.jpg"></a>
-    <a href=""><img src="public/pictures/kindle-logo.png"></a>
-    <a href=""><img src="public/pictures/logo-fnac.jpg"></a>
+    <a href="https://www.amazon.fr/"><img src="public/pictures/amazon-logo.jpg" alt="logo amazon"></a>
+    <a href="https://www.amazon.fr/ebooks-kindle/b?ie=UTF8&node=695398031" alt="logo kindle"><img src="public/pictures/kindle-logo.png"></a>
+    <a href="https://www.fnac.com/"><img src="public/pictures/logo-fnac.jpg" alt="logo fnac"></a>
 </div>
     </div>    
 </div>

@@ -24,6 +24,7 @@ h3 {
 
 h4 {
 	font-size: 15px;
+	margin-bottom: 0px;
 }
 h4 a {
 	
@@ -231,23 +232,29 @@ height: 80px;
 
 }
 
+#navPage a {
+	font-size: 18px;
+}
 
+.resumeArticles .creationDate {
+	font-size: 13px;
+}
 
-@media (max-width: 768px)
+@media screen and (max-width: 1200px)
 
 {
 
-.titleInput {
-	width: 300px;
-}
+#logoBox img {
+width: 60px;
+height: 60px;
 
-h1 {
-	margin-left: 30px;
 }
 }
 
 
-@media (max-width: 1100px) {
+
+
+@media screen and (max-width: 1100px) {
 
 
 .loger {
@@ -267,6 +274,26 @@ h1 {
 
 #navbar {
 	margin-bottom: 80px;
+}
+
+}
+
+@media screen and (max-width: 768px)
+
+{
+
+.titleInput {
+	width: 300px;
+}
+
+h1 {
+	margin-left: 30px;
+}
+
+#logoBox img {
+width: 100px;
+height: 100px;
+
 }
 
 }
