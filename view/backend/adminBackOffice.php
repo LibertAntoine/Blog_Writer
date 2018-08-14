@@ -6,13 +6,16 @@
 
 
 <p><a href="index.php">-> Retour  l'acceuil du site</a></p>
+
+<?php if ($_SESSION['status'] === 'admin') { ?>
 <a href="index.php?action=createArticle"><div id="newArticle" class="btn btn-primary btn-lg">
 <p>Créer un nouvel article</p></div></a>
+<?php } ?>
 
 <div class="row">
 	<div class="col-sm-6 jumbotron">
 		<form action="index.php?action=editPseudo" method="post">
-			<h3>Modification du nom utilisation</h3>
+			<h3>Modification du nom utilisateur</h3>
 			<p>Votre nom actuelle est <?= $_SESSION['pseudo'] ?></p>
 			<label>Nouveau nom utilisateur :</label>
 			<input type="text" name="newPseudo">
