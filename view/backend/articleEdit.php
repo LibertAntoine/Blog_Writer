@@ -5,7 +5,7 @@
 
 <p><a class="indexLink" href="index.php">-> Retour à l'acceuil du site</a></p>
 
-
+<h2>Modification de l'article : <?= $article->getTitle() ?></h2>
 
 <form action="index.php?action=updateArticle" method="post">
 <div class="titleEnter">

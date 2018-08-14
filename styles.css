@@ -10,6 +10,13 @@ h2 {
 	margin-bottom: 30px;
 }
 
+
+.article h2 {
+	margin-left: 0px;
+	margin-bottom: 15px;
+	color: #1e5470;
+}
+
 h3 {
 	font-size: 25px;
 	margin-bottom: 20px;
@@ -64,6 +71,52 @@ h4 {
 
 #article {
 	padding-top: 20px;
+}
+
+#article em {
+	font-size: 15px;
+}
+
+#commentSpace {
+	padding-bottom: 60px;
+	margin-left: 15px; 
+	margin-right: 17px;
+}
+
+#commentSpace textarea {
+	width: 100%;
+	height: 70px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+
+}
+
+#commentSpace h3 {
+	color: #1e5470;
+}
+
+#commentSpace .btn-primary {
+	float: right;
+	margin-right: 15px;
+}
+
+.commentBox {
+	padding-top: 30px;
+	clear: both;
+}
+
+.suppReportComment {
+	float: right;
+}
+
+.suppReportComment a {
+	font-style: italic;
+	color: #1e5470;
+}
+
+.suppReportComment a:hover {
+	font-style: italic;
+	color: #1e5470;
 }
 
 .creationDate {
@@ -134,4 +187,22 @@ label {
 
 .titleInput {
 	width: 600px;
+}
+
+#editBloc {
+	float: right;
+}
+
+#editBloc a {
+	color : #1e5470;
+	font-style: italic;
+}
+
+#editBloc a:hover {
+	color : #1e5470;
+	font-style: italic;
+}
+
+.loger {
+	margin-right: 60px;
 }
