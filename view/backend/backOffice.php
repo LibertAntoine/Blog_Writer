@@ -6,6 +6,7 @@
 
 
 <p><a class="indexLink" href="index.php">-> Retour à l'acceuil du site</a></p>
+<p><a class="indexLink" href="index.php?action=allArticles">-> Voir tous les articles</a></p>
 
 <?php if ($user->getStatus() === 'admin') { ?>
 <a href="index.php?action=createArticle"><div id="newArticle" class="btn btn-primary btn-lg">

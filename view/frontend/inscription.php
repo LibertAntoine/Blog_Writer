@@ -4,6 +4,7 @@
 
 
 <p><a class="indexLink" href="index.php">-> Retour à l'acceuil du site</a></p>
+<p><a class="indexLink" href="index.php?action=allArticles">-> Voir tous les articles</a></p>
 
 <h2>Création d'un nouveau compte</h2>
 

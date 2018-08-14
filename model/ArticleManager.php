@@ -56,6 +56,18 @@ class ArticleManager extends DBAccess {
     return new Article($article);
   }
 
+  public function getAllList()
+  {
+    $articles = [];
+    
+    $q = $this->db->query('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%i\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%i\') AS updateDate, nbComment FROM articles ORDER BY updateDate DESC');
+
+    while ($data = $q->fetch(PDO::FETCH_ASSOC))
+    {
+      $articles[] = new Article($data);
+    }
+    return $articles;
+  }
 
   public function getRecentList()
   {

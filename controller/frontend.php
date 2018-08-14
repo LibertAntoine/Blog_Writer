@@ -25,6 +25,32 @@ function articlesList() {
 
 }
 
+function goBiographie() {
+
+	require('view/frontend/biographyView.php');
+
+}
+
+function goGenesys() {
+
+	require('view/frontend/genesysProjectView.php');
+
+}
+
+function AllArticles() {
+
+	$articleManager = new ArticleManager();
+
+	$articles = $articleManager->getAllList();
+
+	$topArticles = $articleManager->getBestList();
+
+	require('view/frontend/articlesAllView.php');
+
+}
+
+
+
 function article() {
 
 	$articleManager = new ArticleManager();

@@ -20,6 +20,15 @@ try {
         elseif ($_GET['action'] == 'login') {
         	login();
         }
+        elseif ($_GET['action'] == 'allArticles') {
+            allArticles();
+        }
+        elseif ($_GET['action'] == 'biography') {
+            goBiographie();
+        }
+        elseif ($_GET['action'] == 'genesys') {
+            goGenesys();
+        }
         elseif ($_GET['action'] == 'verifUser') {
         	verifUser();
         }

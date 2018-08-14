@@ -5,6 +5,7 @@
 <div class="row">
 <div class="col-sm-12">
 <p><a class="indexLink" href="index.php">-> Retour à l'acceuil du site</a></p>
+<p><a class="indexLink" href="index.php?action=allArticles">-> Voir tous les articles</a></p>
 
 <div id="article" class="article jumbotron">
 <?php 
