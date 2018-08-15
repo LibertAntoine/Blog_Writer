@@ -5,7 +5,7 @@
         <title><?= $title ?></title>
 
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="styles.css" rel="stylesheet" /> 
+        <link href="public/css/styles.css" rel="stylesheet" /> 
         <link href="https://fonts.googleapis.com/css?family=Bitter|Corben|Merriweather|Sawarabi+Mincho" rel="stylesheet">
     </head>
         

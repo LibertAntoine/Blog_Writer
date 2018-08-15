@@ -24,7 +24,7 @@ ob_start(); ?>
                     <em class="creationDate">ajouté le <?= $data->getCreationDate() ?></em>
                     <p>
                         <?= nl2br((substr($data->getContent(), 0, 320).'...')) ?>
-                        <a href="index.php?action=article&amp;id=<?= $data->getId() ?>">lire la suite</a><br />
+                        <a href="index.php?action=article&amp;id=<?= $data->getId() ?>"> lire la suite</a><br />
                         <em><a class="commentLink" href="index.php?action=article&amp;id=<?= $data->getId() ?>">Voir les commentaires</a></em>
                     </p>
                 </div>

@@ -18,7 +18,7 @@ ob_start(); ?>
         <?php foreach ($articles as $data) { ?>   
         <tr>
           <td><a href="index.php?action=article&amp;id=<?= $data->getId() ?>"><h3><?= htmlspecialchars($data->getTitle()) ?></h3></a></td>
-          <td><?= nl2br((substr($data->getContent(), 0, 100).'...')) ?><a href="index.php?action=article&amp;id=<?= $data->getId() ?>">lire la suite</a></td>
+          <td><?= nl2br((substr($data->getContent(), 0, 100).'...')) ?><a href="index.php?action=article&amp;id=<?= $data->getId() ?>"> lire la suite</a></td>
           <td class="dateColumn">le <?= $data->getCreationDate() ?></td>
         </tr>
         <?php } ?>
