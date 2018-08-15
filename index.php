@@ -23,6 +23,9 @@ try {
         elseif ($_GET['action'] == 'allArticles') {
             allArticles();
         }
+        elseif ($_GET['action'] == 'removeReport') {
+            removeReport($_GET['id']);
+        }
         elseif ($_GET['action'] == 'biography') {
             goBiographie();
         }
@@ -58,6 +61,9 @@ try {
         }
         elseif ($_GET['action'] == 'deleteComment') {
         	deleteComment($_GET['id'], $_GET['article']);
+        }
+        elseif ($_GET['action'] == 'deleteAdminComment') {
+            deleteAdminComment($_GET['id'], $_GET['article']);
         }
         elseif ($_GET['action'] == 'reporting') {
         	reporting($_GET['id'], $_GET['article']);

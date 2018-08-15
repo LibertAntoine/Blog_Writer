@@ -58,6 +58,7 @@ function article() {
 	$userManager = new UserManager();
 
 	$article = $articleManager->get(intval($_GET['id']));
+	$topArticles = $articleManager->getBestList();
 	$comments = $commentManager->getList($_GET['id']);
 	if (isset($_SESSION['id'])) {
 	$user = $userManager->get($_SESSION['id']);

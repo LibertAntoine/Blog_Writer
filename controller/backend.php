@@ -64,6 +64,16 @@ function deleteComment($commentId, $articleId) {
 	header('Location: index.php?action=article&id=' . $articleId);
 }
 
+function deleteAdminComment($commentId, $articleId) {
+    $commentManager = new CommentManager();
+    $commentManager->delete($commentId);
+
+    $articleManager = new ArticleManager();
+    $articleManager->updateNbComment($articleId, "remove");
+
+    acompte();
+}
+
 
 function updateArticle($articleId, $userId, $title, $content, $nbComment)
 {
@@ -107,7 +117,25 @@ function acompte()
     $userManager = new userManager();
     $user = $userManager->get(intval($_SESSION['id']));
 
-    	require('view/backend/backOffice.php');
+    $articleManager = new articleManager();
+    $commentManager = new commentManager();
+    $comments = $commentManager->getReportingList();
+
+    require('view/backend/backOffice.php');
+
+}
+
+function removeReport($commentId)
+{
+    $userManager = new userManager();
+    $user = $userManager->get(intval($_SESSION['id']));
+
+    $articleManager = new articleManager();
+
+    $commentManager = new commentManager();
+    $comments = $commentManager->removeReporting($commentId);
+
+    require('view/backend/backOffice.php');
 
 }
 

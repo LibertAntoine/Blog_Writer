@@ -53,7 +53,7 @@ class CommentManager extends DBAccess
   {
     $comments = [];
     
-    $q = $this->db->prepare('SELECT id, userId, articleId, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, reporting FROM comments WHERE articleId = :articleId ORDER BY creationDate DESC');
+    $q = $this->db->prepare('SELECT id, userId, articleId, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, reporting FROM comments WHERE articleId = :articleId ORDER BY creationDate');
     $q->execute([':articleId' => $articleId]);
     
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
@@ -63,6 +63,30 @@ class CommentManager extends DBAccess
     return $comments;
   }
   
+  public function getReportingList()
+  {
+    $comments = [];
+    
+    $q = $this->db->prepare('SELECT id, userId, articleId, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, reporting FROM comments WHERE reporting > 0 ORDER BY creationDate DESC');
+    $q->execute();
+    
+    while ($data = $q->fetch(PDO::FETCH_ASSOC))
+    {
+      $comments[] = new Comment($data);
+    }
+    return $comments;
+  }
+
+  public function removeReporting($commentId)
+  {
+    $q = $this->db->prepare('UPDATE comments SET reporting = 0 WHERE id = :id');
+      
+    $q->bindValue(':id', $commentId);
+
+    $q->execute();
+  }
+
+
   public function reporting($commentId)
   {
     $q = $this->db->prepare('UPDATE comments SET reporting = reporting + 1 WHERE id = :id');

@@ -38,7 +38,41 @@
 	</div>
 </div>
 
+<?php if ($user->getStatus() === 'admin') { ?>
+<h2>Liste des commentaires signalés</h2>
+<?php 	if ($comments != NULL) {?>
 
+
+<table class="table">
+   <tr>
+       <th>Commentaire</th>
+       <th class="dateColumn">Nombre de signalement</th>
+       <th class="dateColumn">Article associé</th>
+       <th class="dateColumn">Date de création de l'article</th>
+       <th>Action</th>
+   </tr>
+<?php
+
+foreach ($comments as $data)
+{ 
+?>   
+   <tr>
+       <td><?= $data->getContent() ?></td>
+       <td class="dateColumn"><?= $data->getReporting() ?></td>
+       <td class="dateColumn"><a href="index.php?action=article&amp;id=<?= $data->getArticleId() ?>"><?= $articleManager->getTitle($data->getArticleId()) ?></a></td>
+       <td class="dateColumn">le <?= $data->getCreationDate() ?></td>
+       <td><a href="index.php?action=deleteAdminComment&amp;id=<?= $data->getId()?>&amp;article=<?= $data->getArticleId()?>">Supprimer</a> <br>
+       	<a href="index.php?action=removeReport&amp;id=<?= $data->getId() ?>">Annuler</a></td>
+   </tr>
+<?php
+}} else {
+?>
+<p>Aucun commentaire n'a été signalé</p>
+<?php	
+}
+?>
+</table>
+<?php } ?>
 
 
 <?php $content = ob_get_clean(); ?>

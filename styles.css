@@ -10,6 +10,22 @@ h2 {
 	margin-bottom: 30px;
 }
 
+p {
+	font-family: 'Sawarabi Mincho', sans-serif;
+} 
+
+h1{
+	font-family: 'Merriweather', serif;
+	
+}
+
+h2 {
+	font-family: 'Bitter', serif;
+}
+
+a, h4 {
+	font-family: 'Corben', cursive;
+}
 
 .article h2 {
 	margin-left: 0px;
@@ -67,11 +83,44 @@ h4 a:hover {
 
 }
 
+ footer {
+ 	margin-top: 40px;
+ 	background-color: #76ccf7;
+}
+
+#index {
+	padding-left: 20px;
+	background-color: #76ccf7; 
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+#index h3 {
+	font-size : 20px; 
+}
+
+#index a {
+	font-size : 15px; 
+}
+
+#credit {
+	margin-bottom: 0px;
+	width: 100%;
+}
+
+#credit p {
+	width: 100%;
+
+	text-align: center;
+}
+
 #navbar a {
 	color: white;
 	font-size : 15px;
 	font-weight: bold;
 }
+
+
 
 #navbar a:hover {
 	text-decoration:none;
@@ -79,6 +128,7 @@ h4 a:hover {
 
 #article {
 	padding-top: 20px;
+	background-color: #76ccf7;
 }
 
 #article em {
@@ -89,6 +139,7 @@ h4 a:hover {
 	padding-bottom: 60px;
 	margin-left: 15px; 
 	margin-right: 17px;
+
 }
 
 #commentSpace textarea {

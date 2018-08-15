@@ -8,22 +8,18 @@
 
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link href="styles.css" rel="stylesheet" /> 
+        <link href="https://fonts.googleapis.com/css?family=Bitter|Corben|Merriweather|Sawarabi+Mincho" rel="stylesheet">
     </head>
         
     <body>
 
-
     	<?php require("include/navbar.php");?>
         
         <section id="blogContent" class="container">
-        <?= $content ?>
+            <?= $content ?>
         </section>
 
-
-
-
-
-
+        <?php require("include/footer.php");?>  
 
         <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="vendor/jQuery/jquery-3.3.1.min.js"></script>

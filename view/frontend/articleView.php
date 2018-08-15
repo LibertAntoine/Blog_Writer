@@ -2,11 +2,13 @@
 
 <?php ob_start(); ?>
 
-<div class="row">
-<div class="col-sm-12">
+
+
 <p><a class="indexLink" href="index.php">-> Retour à l'acceuil du site</a></p>
 <p><a class="indexLink" href="index.php?action=allArticles">-> Voir tous les articles</a></p>
 
+<div class="row">
+<div class="col-lg-8 col-md-7">
 <div id="article" class="article jumbotron">
 <?php 
 if(isset($user)) {
@@ -29,7 +31,7 @@ if($user->getStatus() === 'admin') { ?>
 </div>
 
 <div class="row">
-<div id="commentSpace" class="col-lg-8 col-md-10 col-sm-12 col-xs-12 jumbotron">
+<div id="commentSpace" class="jumbotron">
 <h3>Commentaires</h3>
 
 <?php if (isset($user)) { ?>
@@ -69,8 +71,18 @@ foreach ($comments as $data)
 </div>
 </div>
 </div>
+
+
+
+</div>
+<div class="col-lg-4 col-md-5">
+    <?php  require('include/navPage.php'); ?>
+    <?php  require('include/topComment.php'); ?>    
+    <?php  require('include/book.php'); ?>
+    
 </div>
 </div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php 

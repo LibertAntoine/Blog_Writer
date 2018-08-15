@@ -32,41 +32,10 @@ foreach ($articles as $data)
 </table>
 </div>
 <div class="col-lg-4 col-md-5">
-    <div id="navPage" class="jumbotron">
-    <h3>Autres contenus</h3>
-        <ul>
-        <li><a class="indexLink" href="index.php?action=biography">Ma biographie</a></li>    
-        <li><a class="indexLink" href="index.php?action=genesys">La génèse du projet</a></li>
-        <li><a class="indexLink" href="index.php">Tous les articles</a></li>
-        </ul>
-    </div>    
-	<div id="topComment" class="jumbotron">
-    <h3>Top des articles les plus commentés du site</h3>
-<?php
-foreach ($topArticles as $data)
-{ 
-?>	
-    <div class="resumeArticles">
-       <h4> <a href="index.php?action=article&amp;id=<?= $data->getId() ?>"><?= htmlspecialchars($data->getTitle()) ?></a> - <?= $data->getNbComment() ?> Commentaires</h4>
-
-        <p class="creationDate"> ajouté le <?= $data->getCreationDate() ?></p>
-        <p></p>
-    </div>
-
-
-<?php
-}
-?>		
-</div>
-<div id="book" class="jumbotron">
-    <h3>Précommandez mon livre !!!</h3>
-    <p>Vous pouvez d'or et déjà commander mon livre sur mon voyage en Alaska.</p>
-<div id="logoBox">
-    <a href="https://www.amazon.fr/"><img src="public/pictures/amazon-logo.jpg" alt="logo amazon"></a>
-    <a href="https://www.amazon.fr/ebooks-kindle/b?ie=UTF8&node=695398031" alt="logo kindle"><img src="public/pictures/kindle-logo.png"></a>
-    <a href="https://www.fnac.com/"><img src="public/pictures/logo-fnac.jpg" alt="logo fnac"></a>
-</div>
-    </div>    
+    <?php  require('include/navPage.php'); ?>
+    <?php  require('include/topComment.php'); ?>    
+    <?php  require('include/book.php'); ?>
+    
 </div>
 </div>
 <?php $content = ob_get_clean(); ?>

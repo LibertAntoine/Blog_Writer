@@ -56,6 +56,17 @@ class ArticleManager extends DBAccess {
     return new Article($article);
   }
 
+  public function getTitle($articleId)
+  {
+
+    
+    $q = $this->db->query('SELECT title FROM articles WHERE id = '. $articleId);
+    $info = $q->fetch(PDO::FETCH_ASSOC);
+
+    return $info['title'];
+  }
+
+
   public function getAllList()
   {
     $articles = [];
@@ -68,6 +79,8 @@ class ArticleManager extends DBAccess {
     }
     return $articles;
   }
+
+
 
   public function getRecentList()
   {
