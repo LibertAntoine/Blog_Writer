@@ -42,7 +42,6 @@ class ArticleManager extends DBAccess {
 
   public function get($info)
   {
-
     if (is_int($info))
     {
       $q = $this->db->query('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%i\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%i\') AS updateDate, nbComment FROM articles WHERE id = '.$info);
@@ -58,8 +57,6 @@ class ArticleManager extends DBAccess {
 
   public function getTitle($articleId)
   {
-
-    
     $q = $this->db->query('SELECT title FROM articles WHERE id = '. $articleId);
     $info = $q->fetch(PDO::FETCH_ASSOC);
 
@@ -79,8 +76,6 @@ class ArticleManager extends DBAccess {
     }
     return $articles;
   }
-
-
 
   public function getRecentList()
   {
@@ -119,8 +114,6 @@ class ArticleManager extends DBAccess {
     $q->bindValue(':id', $articleId);
     $q->execute();
   }
-
-
 
   public function update(Article $article)
   {

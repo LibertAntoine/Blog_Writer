@@ -1,5 +1,3 @@
-
-
 <?php session_start();
 
 	require_once('model/BlogContent.php');
@@ -11,126 +9,52 @@
 	require_once('model/Comment.php');
 	require_once('model/User.php');
 
+class Frontend {
 
-
-function articlesList() {
-
-	$articleManager = new ArticleManager();
-
-	$articles = $articleManager->getRecentList();
-
-	$topArticles = $articleManager->getBestList();
-
-	require('view/frontend/articlesListView.php');
-
-}
-
-function goBiographie() {
-
-	require('view/frontend/biographyView.php');
-
-}
-
-function goGenesys() {
-
-	require('view/frontend/genesysProjectView.php');
-
-}
-
-function AllArticles() {
-
-	$articleManager = new ArticleManager();
-
-	$articles = $articleManager->getAllList();
-
-	$topArticles = $articleManager->getBestList();
-
-	require('view/frontend/articlesAllView.php');
-
-}
-
-
-
-function article() {
-
-	$articleManager = new ArticleManager();
-	$commentManager = new CommentManager();
-	$userManager = new UserManager();
-
-	$article = $articleManager->get(intval($_GET['id']));
-	$topArticles = $articleManager->getBestList();
-	$comments = $commentManager->getList($_GET['id']);
-	if (isset($_SESSION['id'])) {
-	$user = $userManager->get($_SESSION['id']);
+	public function articlesListView() {
+		$articleManager = new ArticleManager();
+		$articles = $articleManager->getRecentList();
+		$topArticles = $articleManager->getBestList();
+		require('view/frontend/articlesListView.php');
 	}
-	require('view/frontend/articleView.php');
-}
 
+	public function biographieView() {
+		require('view/frontend/biographyView.php');
+	}
 
-function login() {
-	$message = '';
-	require('view/frontend/loginView.php');
+	public function genesysVIew() {
+		require('view/frontend/genesysProjectView.php');
+	}
 
-}
+	public function allArticlesView() {
+		$articleManager = new ArticleManager();
+		$articles = $articleManager->getAllList();
+		$topArticles = $articleManager->getBestList();
+		require('view/frontend/articlesAllView.php');
+	}
 
-function verifUser() {
+	public function articleView() {
 
-	$userManager = new UserManager();
-	if ($userManager->exists($_POST['pseudo'])) {
-		$user = $userManager->get($_POST['pseudo']);
-		if ($user->getMdp() == $_POST['mdp']) {
-			$_SESSION['pseudo'] = $_POST['pseudo'];
-			$_SESSION['id'] = $user->getId();
-			header('Location: index.php');
-		} else {
-			$message = 'Le mot de passe renseigné ne correspond pas à cette utilisateur';
-			require('view/frontend/loginView.php');
+		$articleManager = new ArticleManager();
+		$commentManager = new CommentManager();
+		$userManager = new UserManager();
+
+		$article = $articleManager->get(intval($_GET['id']));
+		$topArticles = $articleManager->getBestList();
+		$comments = $commentManager->getList($_GET['id']);
+		if (isset($_SESSION['id'])) {
+			$user = $userManager->get($_SESSION['id']);
 		}
-	} else {
-	$message = 'L\'identifiant renseigné est incorrect';
-	require('view/frontend/loginView.php');
-}
-}
 
-function logOut() {
-	session_destroy();
-	header('Location: index.php');
-}
-
-function inscription() {
-	$message = '';
-	require('view/frontend/inscription.php');
-
+		require('view/frontend/articleView.php');
+	}	
 }
 
 
-function addUser($pseudo, $mdp)
-{
 
-    $user = new User(['pseudo' => $pseudo, 'mdp' => $mdp]);
-    
-    echo $user->getPseudo();
 
-    $userManager = new UserManager();
 
-    $affectedLines = $userManager->add($user);
 
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'enregister l\'utilisateur');
-    }
-    else {
-        $_SESSION['pseudo'] = $_POST['pseudo'];
-		$_SESSION['id'] = $user->getId();
-		header('Location: index.php');
-    }
-}
 
-function reporting($commentId, $articleId) {
 
-	$commentManager = new CommentManager();
-	$commentManager->reporting($commentId);
 
-	header('Location: index.php?action=article&id=' . $articleId);
-	
-
-}
