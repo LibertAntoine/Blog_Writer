@@ -1,4 +1,4 @@
-<?php $title = "Modification d'un nouvelle article"; ?>
+<?php $title = "Création d'un nouvel article"; ?>
 
 <?php ob_start(); ?>
 
@@ -17,7 +17,7 @@
 			<textarea class="tinymce" id="content" name="content"></textarea>
 		</div>
 		<div>
- 			<input class="btn btn-success" type="submit" value="Valider la modification"/>
+ 			<input class="btn btn-success" type="submit" value="Valider la création de l'article"/>
 		</div>
 	</form>
 

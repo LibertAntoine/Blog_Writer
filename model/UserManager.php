@@ -6,7 +6,7 @@ class UserManager extends DBAccess
 
 	public function add(User $user) 
   {
-		$q = $this->db->prepare("INSERT INTO `users` (`pseudo`, `mdp`, `status`) VALUES (:pseudo, :mdp, 'visitor');");
+		$q = $this->db->prepare("INSERT INTO `roche_users` (`pseudo`, `mdp`, `status`) VALUES (:pseudo, :mdp, 'visitor');");
 
 		$q->bindValue(':pseudo', $user->getPseudo());
     $q->bindValue(':mdp', $user->getMdp());
@@ -19,21 +19,21 @@ class UserManager extends DBAccess
 
   public function count()
   {
-    return $this->db->query('SELECT COUNT(*) FROM users')->fetchColumn();
+    return $this->db->query('SELECT COUNT(*) FROM roche_users')->fetchColumn();
   }
 
   public function delete(User $user)
   {
-    $this->db->exec('DELETE FROM users WHERE id = '.$user->getId());
+    $this->db->exec('DELETE FROM roche_users WHERE id = '.$user->getId());
   }
 
  	public function exists($info)
  	{
    	if (is_int($info)) {
-      return (bool) $this->db->query('SELECT COUNT(*) FROM users WHERE id = '.$info)->fetchColumn();
+      return (bool) $this->db->query('SELECT COUNT(*) FROM roche_users WHERE id = '.$info)->fetchColumn();
     } else 
     {
-      $q = $this->db->prepare('SELECT COUNT(*) FROM users WHERE pseudo = :pseudo');
+      $q = $this->db->prepare('SELECT COUNT(*) FROM roche_users WHERE pseudo = :pseudo');
     	$q->execute([':pseudo' => $info]);
     	return (bool) $q->fetchColumn();
     }
@@ -43,11 +43,11 @@ class UserManager extends DBAccess
   {
     if (is_int($info))
     {
-      $q = $this->db->query('SELECT id, pseudo, mdp, status FROM users WHERE id = '.$info);
+      $q = $this->db->query('SELECT id, pseudo, mdp, status FROM roche_users WHERE id = '.$info);
       $user = $q->fetch(PDO::FETCH_ASSOC);
     } else 
     {
-      $q = $this->db->prepare('SELECT id, pseudo, mdp, status FROM users WHERE pseudo = :pseudo');
+      $q = $this->db->prepare('SELECT id, pseudo, mdp, status FROM roche_users WHERE pseudo = :pseudo');
       $q->execute([':pseudo' => $info]);
       
       $user = $q->fetch(PDO::FETCH_ASSOC);
@@ -60,7 +60,7 @@ class UserManager extends DBAccess
   {
     $users = [];
     
-    $q = $this->db->prepare("SELECT id, pseudo, mdp, status FROM users WHERE status = 'visitor' ORDER BY pseudo");
+    $q = $this->db->prepare("SELECT id, pseudo, mdp, status FROM roche_users WHERE status = 'visitor' ORDER BY pseudo");
     $q->execute();
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
     {
@@ -73,7 +73,7 @@ class UserManager extends DBAccess
   {
     $users = [];
     
-    $q = $this->db->prepare("SELECT pseudo FROM users WHERE id = $userId");
+    $q = $this->db->prepare("SELECT pseudo FROM roche_users WHERE id = $userId");
     $q->execute();
  
      $pseudo = $q->fetch();
@@ -83,7 +83,7 @@ class UserManager extends DBAccess
   
   public function update(User $user)
   {
-    $q = $this->db->prepare('UPDATE users SET pseudo = :pseudo, mdp = :mdp, status = :status WHERE id = :id');
+    $q = $this->db->prepare('UPDATE roche_users SET pseudo = :pseudo, mdp = :mdp, status = :status WHERE id = :id');
     
     $q->bindValue(':pseudo', $user->getPseudo());
     $q->bindValue(':mdp', $user->getMdp());

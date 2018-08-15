@@ -6,7 +6,7 @@ abstract class DBAccess {
 
 	public function __construct()
 	{
-		$db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+		$db = new PDO('mysql:host=localhost;dbname=ingenusprb476', 'root', '');
 		$this->db = $db;
 	}
 }
