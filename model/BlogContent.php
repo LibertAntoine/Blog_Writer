@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 abstract class BlogContent {
 
 	protected $id, 

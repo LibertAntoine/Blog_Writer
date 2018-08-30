@@ -1,10 +1,12 @@
 <?php
 
+namespace model;
+
 class User {
 	protected $id,
 	$pseudo,
 	$mdp,
-	$status;
+	$admin;
 
 	public function __construct(array $data)
 	{
@@ -38,9 +40,9 @@ class User {
   	return $this->mdp;
   }
 
-  public function getStatus() 
+  public function getAdmin() 
   {
-    return $this->status;
+    return $this->admin;
   }
 
 	public function setId($id) 
@@ -62,18 +64,22 @@ class User {
 
  	public function setMdp($mdp) 
   {
-  	if (is_string($mdp) && strlen($mdp) < 26) 
+  	if (is_string($mdp) && strlen($mdp) < 255) 
     {
  		 $this->mdp = $mdp;
- 	  }
+ 	  } else {
+      throw new Exception("Mot de passe renseigné incorrect");
+    }
+
   }
 
- 	public function setStatus($status) 
+ 	public function setAdmin($admin) 
   {
-  	if (is_string($status) && strlen($status) < 26) 
+    $admin = (int) $admin;
+    if ($admin >= 0) 
     {
- 		 $this->status = $status;
- 	  }
+     $this->admin = $admin;
+    }
   }
 }
 

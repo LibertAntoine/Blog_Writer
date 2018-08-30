@@ -9,8 +9,8 @@
 	        	<li><a class="indexLink" href="index.php?action=allArticles">Tous les articles</a></li>
 	        </ul>
     	</div>
-    	<div class="row credit">
-    		<p>Site réalisé par Antoine Libert - Tous droit réservés - 2018</p>
+    	<div id="credit" class="row">
+    			<p>Site réalisé par Antoine Libert - Tous droit réservés - 2018</p>
     	</div>
     </div> 
 </footer>

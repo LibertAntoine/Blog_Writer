@@ -1,13 +1,15 @@
 <?php
 
-	require_once('model/BlogContent.php');
-	require_once('model/DBAccess.php');
-	require_once('model/ArticleManager.php');
-	require_once('model/CommentManager.php');
-	require_once('model/UserManager.php');
-	require_once('model/Article.php');
-	require_once('model/Comment.php');
-	require_once('model/User.php');
+	namespace controller;
+
+	use \model\DBAccess;
+    use \model\BlogContent;
+    use \model\Article;
+    use \model\Comment;
+    use \model\User;   
+    use \model\ArticleManager;
+    use \model\CommentManager;
+    use \model\UserManager;
 
 class ArticleCRUD {
 
@@ -15,24 +17,36 @@ class ArticleCRUD {
 	{	    
 	    $article = new Article(['title' => $title, 'userId' => $userId, 'content' => $content]);	    
 	    $articleManager = new ArticleManager();
-	    $affectedLines = $articleManager->add($article);
-	    if ($affectedLines === false) {
-	        throw new Exception('Impossible d\'enregister l\'article !');
-	    } else {
-	        header('Location: index.php?action=article&id=' . $article->getId());
+	    $article = $articleManager->add($article);
+	    if ($article) {
+	       return $article;
 	    }
 	}
 
 	public function updateArticle($articleId, $userId, $title, $content, $nbComment) {
 	    $article = new Article(['id' => $articleId, 'title' => $title, 'userId' => $userId, 'content' => $content, 'nbComment' => $nbComment]);	  
 	    $articleManager = new ArticleManager();
-	    $affectedLines = $articleManager->update($article);
-	    if ($affectedLines === false) {
-	        throw new Exception('Impossible de mettre à jour l\'article !');
+	    $article = $articleManager->update($article);
+	    
+	    if (gettype($article) === 'object') {
+	        return $article;
 	    } else {
-	        header('Location: index.php?action=article&id=' . $articleId);
+	        return FALSE;
 	    }
 	}
+
+	public function readArticle($info) {	  
+	    $articleManager = new ArticleManager();
+	    $article = $articleManager->get($info);
+
+	    if (gettype($article) === 'object') {
+	        return $article;
+	    } else {
+	        return FALSE;
+	    }
+	}
+
+
 
 	public function deleteArticle($articleId) {
 		$articleManager = new ArticleManager();

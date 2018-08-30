@@ -1,5 +1,7 @@
 <?php $title = 'Blog d\'un écrivain - Espace administrateur';
 
+$_SESSION['page'] = 'index.php?action=acompte';
+
 ob_start(); ?>
 
 	<h2>Bienvenue <?= $_SESSION['pseudo'] ?> dans votre espace administrateur</h2>
@@ -7,7 +9,7 @@ ob_start(); ?>
 	<p><a class="indexLink" href="index.php">-> Retour à l'acceuil du site</a></p>
 	<p><a class="indexLink" href="index.php?action=allArticles">-> Voir tous les articles</a></p>
 
-	<?php if ($user->getStatus() === 'admin') { ?>
+	<?php if ($user->getAdmin() === 1) { ?>
 		<a href="index.php?action=createArticle"><div id="newArticle" class="btn btn-primary btn-lg">
 		<p>Créer un nouvel article</p></div></a>
 	<?php } ?>
@@ -37,7 +39,7 @@ ob_start(); ?>
 		</div>
 	</div>
 
-	<?php if ($user->getStatus() === 'admin') { ?>
+	<?php if ($user->getAdmin() === 1) { ?>
 		<h2>Liste des commentaires signalés</h2>
 		<?php if ($comments != NULL) {?>
 			<table class="table">
@@ -50,12 +52,12 @@ ob_start(); ?>
 			   	</tr>
 				<?php foreach ($comments as $data) { ?>   
 	   				<tr>
-				       	<td><?= $data->getContent() ?></td>
+				       	<td><?= htmlspecialchars($data->getContent()) ?></td>
 				       	<td class="dateColumn"><?= $data->getReporting() ?></td>
 				       	<td class="dateColumn"><a href="index.php?action=article&amp;id=<?= $data->getArticleId() ?>"><?= $articleManager->getTitle($data->getArticleId()) ?></a></td>
 				       	<td class="dateColumn">le <?= $data->getCreationDate() ?></td>
 				       	<td>
-				       		<a href="index.php?action=deleteAdminComment&amp;id=<?= $data->getId()?>&amp;article=<?= $data->getArticleId()?>">Supprimer</a><br>
+				       		<a href="index.php?action=deleteComment&amp;id=<?= $data->getId()?>&amp;article=<?= $data->getArticleId()?>">Supprimer</a><br>
 				       		<a href="index.php?action=removeReport&amp;id=<?= $data->getId() ?>">Annuler</a>
 				   		</td>
 				   </tr>
@@ -67,4 +69,4 @@ ob_start(); ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('view/frontend/template.php'); ?>
+<?php require('view/template.php'); ?>

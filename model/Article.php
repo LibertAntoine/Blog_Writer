@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 class Article extends BlogContent {
 
 	protected $title,

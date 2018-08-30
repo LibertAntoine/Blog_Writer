@@ -20,23 +20,23 @@ ob_start(); ?>
         <div class="col-lg-8 col-md-7">
             <?php foreach ($articles as $data) { ?>
                 <div class="articleBox jumbotron">
-                    <a href="index.php?action=article&amp;id=<?= $data->getId() ?>"><h3><?= htmlspecialchars($data->getTitle()) ?></h3></a>
+                    <a href="index.php?action=article&amp;id=<?= $data->getId() ?>"><h3><?= htmlspecialchars_decode($data->getTitle()) ?></h3></a>
                     <em class="creationDate">ajouté le <?= $data->getCreationDate() ?></em>
                     <p>
-                        <?= nl2br((substr($data->getContent(), 0, 320).'...')) ?>
+                        <?= nl2br(htmlspecialchars_decode(substr($data->getContent(), 0, 320).'...')) ?>
                         <a href="index.php?action=article&amp;id=<?= $data->getId() ?>"> lire la suite</a><br />
-                        <em><a class="commentLink" href="index.php?action=article&amp;id=<?= $data->getId() ?>">Voir les commentaires</a></em>
+                        <em><a class="commentLink" href="index.php?action=article&amp;id=<?= $data->getId() ?>#commentSpace">Voir les commentaires</a></em>
                     </p>
                 </div>
             <?php } ?>
         </div>
         <div class="col-lg-4 col-md-5">
-            <?php  require('include/navPage.php'); ?>
-            <?php  require('include/topComment.php'); ?>	
-            <?php  require('include/book.php'); ?>
+            <?php  require('view/include/navPage.php'); ?>
+            <?php  require('view/include/topComment.php'); ?>	
+            <?php  require('view/include/book.php'); ?>
         </div>
     </div>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 
 class ArticleManager extends DBAccess {
 
@@ -15,6 +17,8 @@ class ArticleManager extends DBAccess {
 
     $article->hydrate([
       'id' => $this->db->lastInsertId()]);
+
+    return $article;
   }
 
   public function count()
@@ -45,20 +49,22 @@ class ArticleManager extends DBAccess {
     if (is_int($info))
     {
       $q = $this->db->query('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%i\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%i\') AS updateDate, nbComment FROM roche_articles WHERE id = '.$info);
-      $article = $q->fetch(PDO::FETCH_ASSOC);
+      $article = $q->fetch(\PDO::FETCH_ASSOC);
     } else 
     {
      	$q = $this->db->prepare('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%i\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%i\') AS updateDate, nbComment FROM roche_articles WHERE title = :title');
       $q->execute([':title' => $info]);
-      $article = $q->fetch(PDO::FETCH_ASSOC);
+      $article = $q->fetch(\PDO::FETCH_ASSOC);
     }
-    return new Article($article);
+    if ($article) {
+      return new Article($article);
+    }
   }
 
   public function getTitle($articleId)
   {
     $q = $this->db->query('SELECT title FROM roche_articles WHERE id = '. $articleId);
-    $info = $q->fetch(PDO::FETCH_ASSOC);
+    $info = $q->fetch(\PDO::FETCH_ASSOC);
 
     return $info['title'];
   }
@@ -70,7 +76,7 @@ class ArticleManager extends DBAccess {
     
     $q = $this->db->query('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%i\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%i\') AS updateDate, nbComment FROM roche_articles ORDER BY updateDate DESC');
 
-    while ($data = $q->fetch(PDO::FETCH_ASSOC))
+    while ($data = $q->fetch(\PDO::FETCH_ASSOC))
     {
       $articles[] = new Article($data);
     }
@@ -83,7 +89,7 @@ class ArticleManager extends DBAccess {
     
     $q = $this->db->query('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%i\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%i\') AS updateDate, nbComment FROM roche_articles ORDER BY updateDate DESC LIMIT 0, 5');
 
-    while ($data = $q->fetch(PDO::FETCH_ASSOC))
+    while ($data = $q->fetch(\PDO::FETCH_ASSOC))
     {
       $articles[] = new Article($data);
     }
@@ -96,7 +102,7 @@ class ArticleManager extends DBAccess {
     
     $q = $this->db->query('SELECT id, userId, title, content, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%i\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%i\') AS updateDate, nbComment FROM roche_articles ORDER BY nbComment DESC LIMIT 0, 5');
 
-    while ($data = $q->fetch(PDO::FETCH_ASSOC))
+    while ($data = $q->fetch(\PDO::FETCH_ASSOC))
     {
       $articles[] = new Article($data);
     }
@@ -125,6 +131,9 @@ class ArticleManager extends DBAccess {
     $q->bindValue(':nbComment', $article->getNbComment());
     $q->bindValue(':id', $article->getId());
     $q->execute();
+  
+    return $article;
+
   }
 }
 

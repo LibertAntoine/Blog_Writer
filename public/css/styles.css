@@ -104,14 +104,12 @@ h4 a:hover {
 }
 
 #credit {
-	margin-bottom: 0px;
 	width: 100%;
+	padding-bottom: 20px;
 }
 
 #credit p {
-	width: 100%;
-
-	text-align: center;
+	margin: auto;
 }
 
 #navbar a {
@@ -137,8 +135,7 @@ h4 a:hover {
 
 #commentSpace {
 	padding-bottom: 60px;
-	margin-left: 15px; 
-	margin-right: 17px;
+	width: 100%;
 
 }
 
@@ -300,6 +297,9 @@ width: 60px;
 height: 60px;
 
 }
+
+
+
 }
 
 

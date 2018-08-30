@@ -1,19 +1,21 @@
 <?php
 
-    require_once('model/BlogContent.php');
-    require_once('model/DBAccess.php');
-    require_once('model/ArticleManager.php');
-    require_once('model/CommentManager.php');
-    require_once('model/UserManager.php');
-    require_once('model/Article.php');
-    require_once('model/Comment.php');
-    require_once('model/User.php');
-
+    namespace controller;
+    
+    use \model\DBAccess;
+    use \model\BlogContent;
+    use \model\Article;
+    use \model\Comment;
+    use \model\User;   
+    use \model\ArticleManager;
+    use \model\CommentManager;
+    use \model\UserManager;
 
 class Backend {
 
     public function createArticleView() {
-    	require('view/backend/articleCreate.php');
+        $message = '';
+    	require('view/backend/articleCreateView.php');
     }
 
     public function editArticleView($articleId) {
@@ -21,7 +23,7 @@ class Backend {
             $articleManager = new articleManager();
             $article = $articleManager->get(intval($articleId));
         }
-        require('view/backend/articleEdit.php');
+        require('view/backend/articleEditView.php');
     }
 
     public function backOfficeView() {
@@ -31,7 +33,7 @@ class Backend {
         $commentManager = new commentManager();
         $comments = $commentManager->getReportingList();
 
-        require('view/backend/backOffice.php');
+        require('view/backend/backOfficeView.php');
     }
 
     public function loginView() {
@@ -41,6 +43,6 @@ class Backend {
 
     public function inscriptionView() {
         $message = '';
-        require('view/frontend/inscription.php');
+        require('view/frontend/inscriptionView.php');
     }
 }

@@ -1,28 +1,29 @@
 <?php
 
-	require_once('model/BlogContent.php');
-	require_once('model/DBAccess.php');
-	require_once('model/ArticleManager.php');
-	require_once('model/CommentManager.php');
-	require_once('model/UserManager.php');
-	require_once('model/Article.php');
-	require_once('model/Comment.php');
-	require_once('model/User.php');
+	namespace controller;
+	
+	use \model\DBAccess;
+    use \model\BlogContent;
+    use \model\Article;
+    use \model\Comment;
+    use \model\User;   
+    use \model\ArticleManager;
+    use \model\CommentManager;
+    use \model\UserManager;
+
+
 
 
 class UserCRUD {
 	
 	public function addUser($pseudo, $mdp)
 	{
-	    $user = new User(['pseudo' => $pseudo, 'mdp' => $mdp]);	   
+		$pass_hache = password_hash($mdp, PASSWORD_DEFAULT);
+	    $user = new User(['pseudo' => $pseudo, 'mdp' => $pass_hache]);	   
 	    $userManager = new UserManager();
-	    $affectedLines = $userManager->add($user);
-	    if ($affectedLines === false) {
-	        throw new Exception('Impossible d\'enregister l\'utilisateur');
-	    } else {
-	        $_SESSION['pseudo'] = $_POST['pseudo'];
-			$_SESSION['id'] = $user->getId();
-			header('Location: index.php');
+	    $user = $userManager->add($user);
+	    if ($user) {
+	    	return $user;
 	    }
 	}
 
@@ -56,22 +57,34 @@ class UserCRUD {
 		}
 	    require('view/backend/backOffice.php');
 	}
-
-	public function verifUser() {
+	
+	
+	public function readAdmin($pseudo) {
 		$userManager = new UserManager();
-		if ($userManager->exists($_POST['pseudo'])) {
-			$user = $userManager->get($_POST['pseudo']);
-			if ($user->getMdp() == $_POST['mdp']) {
-				$_SESSION['pseudo'] = $_POST['pseudo'];
-				$_SESSION['id'] = $user->getId();
-				header('Location: index.php');
+		if ($userManager->exists($pseudo)) {
+			$user = $userManager->get($pseudo);
+			if ($user->getAdmin() === 1) {
+				return TRUE;
 			} else {
-				$message = 'Le mot de passe renseigné ne correspond pas à cette utilisateur';
-				require('view/frontend/loginView.php');
+				return FALSE;
 			}
 		} else {
-			$message = 'L\'identifiant renseigné est incorrect';
-			require('view/frontend/loginView.php');
+			return FALSE;
+		}
+	}
+
+	public function read($pseudo, $mdp = '') {
+		$userManager = new UserManager();
+		if ($userManager->exists($pseudo)) {
+			$user = $userManager->get($pseudo);
+			$verif = password_verify($mdp, $user->getMdp());
+			if ($verif) {
+				return $user;
+			} else {
+				return 2;
+			}
+		} else {
+			return 1;
 		}
 	}
 

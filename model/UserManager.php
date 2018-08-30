@@ -1,12 +1,13 @@
 <?php
 
+namespace model;
 
 class UserManager extends DBAccess
 {
 
 	public function add(User $user) 
   {
-		$q = $this->db->prepare("INSERT INTO `roche_users` (`pseudo`, `mdp`, `status`) VALUES (:pseudo, :mdp, 'visitor');");
+		$q = $this->db->prepare("INSERT INTO `roche_users` (`pseudo`, `mdp`, `admin`) VALUES (:pseudo, :mdp, 0);");
 
 		$q->bindValue(':pseudo', $user->getPseudo());
     $q->bindValue(':mdp', $user->getMdp());
@@ -15,6 +16,8 @@ class UserManager extends DBAccess
 
     $user->hydrate([
       'id' => $this->db->lastInsertId()]);
+
+    return $user;
   }
 
   public function count()
@@ -43,14 +46,14 @@ class UserManager extends DBAccess
   {
     if (is_int($info))
     {
-      $q = $this->db->query('SELECT id, pseudo, mdp, status FROM roche_users WHERE id = '.$info);
-      $user = $q->fetch(PDO::FETCH_ASSOC);
+      $q = $this->db->query('SELECT id, pseudo, mdp, admin FROM roche_users WHERE id = '.$info);
+      $user = $q->fetch(\PDO::FETCH_ASSOC);
     } else 
     {
-      $q = $this->db->prepare('SELECT id, pseudo, mdp, status FROM roche_users WHERE pseudo = :pseudo');
+      $q = $this->db->prepare('SELECT id, pseudo, mdp, admin FROM roche_users WHERE pseudo = :pseudo');
       $q->execute([':pseudo' => $info]);
       
-      $user = $q->fetch(PDO::FETCH_ASSOC);
+      $user = $q->fetch(\PDO::FETCH_ASSOC);
     } 
     return new User($user);
   }
@@ -60,9 +63,9 @@ class UserManager extends DBAccess
   {
     $users = [];
     
-    $q = $this->db->prepare("SELECT id, pseudo, mdp, status FROM roche_users WHERE status = 'visitor' ORDER BY pseudo");
+    $q = $this->db->prepare("SELECT id, pseudo, mdp, admin FROM roche_users WHERE admin = 0 ORDER BY pseudo");
     $q->execute();
-    while ($data = $q->fetch(PDO::FETCH_ASSOC))
+    while ($data = $q->fetch(\PDO::FETCH_ASSOC))
     {
      $users[] = new User($data);
     }
@@ -83,11 +86,11 @@ class UserManager extends DBAccess
   
   public function update(User $user)
   {
-    $q = $this->db->prepare('UPDATE roche_users SET pseudo = :pseudo, mdp = :mdp, status = :status WHERE id = :id');
+    $q = $this->db->prepare('UPDATE roche_users SET pseudo = :pseudo, mdp = :mdp, admin = :admin WHERE id = :id');
     
     $q->bindValue(':pseudo', $user->getPseudo());
     $q->bindValue(':mdp', $user->getMdp());
-    $q->bindValue(':status', $user->getStatus());
+    $q->bindValue(':admin', $user->getStatus());
     $q->bindValue(':id', $user->getId());
 
     $q->execute();

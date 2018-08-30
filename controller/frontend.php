@@ -1,13 +1,18 @@
-<?php session_start();
+<?php 
 
-	require_once('model/BlogContent.php');
-	require_once('model/DBAccess.php');
-	require_once('model/ArticleManager.php');
-	require_once('model/CommentManager.php');
-	require_once('model/UserManager.php');
-	require_once('model/Article.php');
-	require_once('model/Comment.php');
-	require_once('model/User.php');
+	namespace controller;
+
+	use \model\DBAccess;
+    use \model\BlogContent;
+    use \model\Article;
+    use \model\Comment;
+    use \model\User;   
+    use \model\ArticleManager;
+    use \model\CommentManager;
+    use \model\UserManager;
+
+
+
 
 class Frontend {
 
@@ -39,14 +44,18 @@ class Frontend {
 		$commentManager = new CommentManager();
 		$userManager = new UserManager();
 
-		$article = $articleManager->get(intval($_GET['id']));
+		$article = $articleManager->get(intval(htmlspecialchars($_GET['id'])));
 		$topArticles = $articleManager->getBestList();
 		$comments = $commentManager->getList($_GET['id']);
 		if (isset($_SESSION['id'])) {
 			$user = $userManager->get($_SESSION['id']);
 		}
-
-		require('view/frontend/articleView.php');
+		if (gettype($article) === 'object') {
+			require('view/frontend/articleView.php');
+		} else {
+			throw new Exception('L\'article désigné n\'existe pas');
+		}
+		
 	}	
 }
 
