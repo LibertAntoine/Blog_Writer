@@ -150,7 +150,7 @@ class Action {
                             $articleCRUD = new ArticleCRUD();
                         if (!empty($_POST['title']) AND !empty($_POST['content'])) {
                             $article = $articleCRUD->readArticle(htmlspecialchars($_POST['title']));
-                            if ($article === FALSE OR $article->getId() === $_POST['id']) {
+                            if ($article === FALSE OR $article->getId() === intval($_POST['id'])) {
                                 $article = $articleCRUD->updateArticle($_POST['id'], $_SESSION['id'], htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']), $_POST['nbComment']);
                                 if (gettype($article) === 'object') {
                                     header('Location: index.php?action=article&id=' . $article->getId());
