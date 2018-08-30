@@ -26,13 +26,12 @@ class Backend {
         require('view/backend/articleEditView.php');
     }
 
-    public function backOfficeView() {
+    public function backOfficeView($message = NULL) {
         $userManager = new userManager();
         $user = $userManager->get(intval($_SESSION['id']));
         $articleManager = new articleManager();
         $commentManager = new commentManager();
         $comments = $commentManager->getReportingList();
-
         require('view/backend/backOfficeView.php');
     }
 

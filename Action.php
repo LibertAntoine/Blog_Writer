@@ -200,7 +200,6 @@ class Action {
 
             case 'addUser':
                 if (!isset($_SESSION['id'], $_SESSION['pseudo'])) {
-                    $message = '';
                     if (!empty($_POST['pseudo']) AND !empty($_POST['mdp'])) { 
                         $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
                         $_POST['mdp'] = htmlspecialchars($_POST['mdp']);   
@@ -238,13 +237,72 @@ class Action {
                 }
                 break;
             case 'editPseudo':
-                $userCRUD = new UserCRUD();
-                $userCRUD->editPseudo($_POST['newPseudo']);
+                if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
+                    if (!empty($_POST['newPseudo'])) {
+                        if(strlen($_POST['newPseudo']) < 25 && strlen($_POST['newPseudo']) > 8) {
+                        $userCRUD = new UserCRUD();
+                        $newUser = $userCRUD->updatePseudo(htmlspecialchars($_POST['newPseudo']));
+                            if (gettype($newUser) === 'object') {
+                                $_SESSION['pseudo'] = htmlspecialchars($_POST['newPseudo']);
+                                $message = 'Le nouveau pseudo a bien été enregistré';
+                                $backend = new Backend();
+                                $backend->backOfficeView($message); 
+                            } else {
+                                throw new Exception('Impossible de modifier l\'identifiant.');
+                            }
+                        } else {
+                            $message = "L'identifiant doit avoir entre 8 et 25 caractères.";
+                            $backend = new Backend();
+                            $backend->backOfficeView($message);  
+                        }
+                    } else {
+                        $message = "Aucun nouvel identifiant fournit.";
+                        $backend = new Backend();
+                        $backend->backOfficeView($message); 
+                    }
+                } else {
+                    throw new Exception('Absence de session utilisateur.');
+                }
                 break;
+
+
             case 'editMdp':
-                $userCRUD = new UserCRUD();
-                $userCRUD->editMdp($_POST['oldMdp'],$_POST['newMdp']);
-                break;
+                if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
+                    if (!empty($_POST['oldMdp']) AND !empty($_POST['newMdp'])) {
+                        if(strlen($_POST['newMdp']) <= 25 && strlen($_POST['newMdp']) >= 8) {
+                            $userCRUD = new UserCRUD();
+                            $user = $userCRUD->read(htmlspecialchars($_SESSION['pseudo']), htmlspecialchars($_POST['oldMdp']));
+                            if (gettype($user) === 'object') {
+                                $newUser = $userCRUD->updateMdp(htmlspecialchars($_POST['newMdp']));
+                                if (gettype($newUser) === 'object') {
+                                    $message = 'Le nouveau mot de passe a bien été enregistré';
+                                    $backend = new Backend();
+                                    $backend->backOfficeView($message); 
+                                } else {
+                                    throw new Exception('Impossible de modifier l\'identifiant.');
+                                }
+                            } elseif ($user === 2) {
+                                $message = 'Le mot de passe renseigné ne correspond pas à cet utilisateur.';
+                                $backend = new Backend();
+                                $backend->backOfficeView($message); 
+                            } else {
+                                throw new Exception('Impossible de lire le profil utilisateur.');
+                            }
+                        } else {
+                            $message = "Le mot de passe doit avoir entre 8 et 25 caractères.";
+                            $backend = new Backend();
+                            $backend->backOfficeView($message); 
+                        }
+                    } else {
+                        $message = "Aucun nouveau mot de passe fournit.";
+                        $backend = new Backend();
+                        $backend->backOfficeView($message); 
+                    }
+                } else {
+                    throw new Exception('Absence de session utilisateur.');
+                }
+            break;
+
             case 'connexion':
                 if (!isset($_SESSION['id'], $_SESSION['pseudo'])) {
                     if (!empty($_POST['pseudo']) AND !empty($_POST['mdp'])) {
@@ -270,7 +328,7 @@ class Action {
                         require('view/frontend/loginView.php');
                     }
                 } else {
-                    throw new Exception('Session déjà établie.');
+                    throw new Exception('Absence de session utilisateur.');
                 }
                 break;
             case 'logOut':

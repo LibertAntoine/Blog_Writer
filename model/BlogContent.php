@@ -67,18 +67,18 @@ abstract class BlogContent {
  		}
  	}
 
-  	public function setContent($content) 
-  	{
+  public function setContent($content) 
+  {
   		if (is_string($content)) 
   		{
  			$this->content = $content;
  		}
  	}
 
-      public function setCreationDate($creationDate) 
+  public function setCreationDate($creationDate) 
+  {
+    if (is_string($creationDate)) 
     {
-      if (is_string($creationDate)) 
-      {
       $this->creationDate = $creationDate;
     }
   }
