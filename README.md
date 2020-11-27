@@ -1,7 +1,7 @@
 # :notebook_with_decorative_cover: Blog-Writer
 
 <p align="center">
-<img src="doc/readme-img/Blog-Writer.png?raw=true" width="100%" alt="Blog-Writer">
+<img src="doc/readme-img/Blog-Writer.png?raw=true" alt="Blog-Writer">
 </p>
 
 ## Table of Contents
